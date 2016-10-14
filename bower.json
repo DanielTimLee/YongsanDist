@@ -1,0 +1,24 @@
+{
+  "name": "smtm_client",
+  "authors": [
+    "Daniel Tim Lee <danieltimlee@gmail.com>"
+  ],
+  "description": "smtm_client page",
+  "main": "server.py",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/static/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic-ui": "^2.2",
+    "jquery": "^2.1"
+  }
+}

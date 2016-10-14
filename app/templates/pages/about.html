@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+  <div class="ui stackable centered grid">
+    <div class="six wide column">
+      <div class="column">
+        <img class="ui fluid image" src="{{ url_for('static', filename='images/new/main_banner.png') }}"
+             style="padding: 2em 0"/>
+      </div>
+      <div class="column" style="padding: 2em 0;">
+        <div class="ui container">
+          <div class="ui large header">SMTM CLIENT?</div>
+          <p>SMTM 클라이언트 입니다</p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="ui container">
+          <div class="ui large header">당신의 마케팅이 어려우십니까?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

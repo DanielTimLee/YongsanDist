@@ -1,0 +1,17 @@
+<div class="ui vertical nav right sidebar large menu">
+  <div class="item">
+    <div class="header">스터디 헬스</div>
+    <div class="menu">
+      <a class="item" href="{{ url_for('index', board_name='notice', page=1) }}">공지사항</a>
+      <a class="item" href="{{ url_for('index', board_name='Suggestion', page=1) }}">통계</a>
+      <a class="item" href="{{ url_for('index', board_name='free', page=1) }}">게시판</a>
+      {# TODO: 페이지 처리 해주기 #}
+      <a class="item" href="{{ url_for('index', board_name='', page=1) }}">설정</a>
+    </div>
+  </div>
+</div>
+
+<div class="ui right vertical notification sidebar borderless menu">
+  <div class="ui small feed" id="notification-list">
+  </div>
+</div>

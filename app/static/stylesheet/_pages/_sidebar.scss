@@ -1,0 +1,24 @@
+$break-large: 700px;
+
+header.ui.container {
+  > .ui.top.menu {
+    > .hamburger.item {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: $break-large) {
+  header.ui.container {
+    > .ui.top.menu {
+      margin: 0px 0px 0px 0px;
+
+      > .hamburger.item {
+        display: block;
+      }
+    }
+    > .ui.menu.board {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMTM Client - {% block title %}{% endblock %}</title>
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/semantic-ui/dist/semantic.min.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/pages/sidebar.min.css') }}"/>
+
+  {% block style %}
+
+
+  {% endblock %}
+</head>
+<body>
+
+{% include 'flash.html' %}
+
+{% block sidebar %}
+  {% include 'sidebar.html' %}
+{% endblock %}
+
+<div class="pusher" role="main">
+  {% block navbar %}
+    {% include 'navbar.html' %}
+  {% endblock %}
+
+  <div class="ui container">
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    {% block footer %}
+      {% include 'footer.html' %}
+    {% endblock %}
+  </div>
+</div>
+
+
+<script type="text/javascript" src="{{ url_for('static', filename='lib/jquery/dist/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='lib/semantic-ui/dist/semantic.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/util.js') }}"></script>
+
+
+{% block script %}
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}비밀번호 확인{% endblock %}
+
+{% block content %}
+  <div class="ui stackable centered grid" style="margin: 3em 0em;">
+    <div class="six wide column">
+
+      <h2 class="ui center aligned header" style="margin: 1em 0em;">
+        <i class="large icons">
+          <i class="unlock alternate icon"></i>
+        </i>
+        비밀번호 재확인
+        <div class="sub header" style="margin:1em 0em">
+          본인확인을 위해 한번 더 비밀번호를 입력해 주세요.<br/>
+          비밀번호는 타인에게 노출되지 않게 주의해 주세요.
+        </div>
+      </h2>
+
+      <form action="{{ request.url }}" method="POST" class="ui form" novalidate style="margin:1em 0em">
+        {{ form.csrf_token }}
+
+
+        <div class="disabled field{% if form.errors['username'] %} error{% endif %}">
+          <label>ID</label>
+          {{ form.username(placeholder="아이디를 입력해주세요", minlength="4") }}
+          {% if form.errors['username'] %}
+            <div class="ui user error message">
+              {% for error in form.errors['username'] %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <div class="field{% if form.errors['password'] %} error{% endif %}">
+          <label>Password</label>
+          {{ form.password(placeholder="비밀번호를 입력해주세요", minlength="6", maxlength="20") }}
+          {% if form.errors['password'] %}
+            <div class="ui user error message">
+              {% for error in form.errors['password'] %}
+                <p>{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+
+        <button class="fluid ui primary button" type="submit">확인하기</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include 'footer.html' %}
+{% endblock %}
+
+{% block script %}
+  <script data-main="{{ url_for('static', filename='script/page/page.view.js') }}"
+          src="{{ url_for('static', filename='lib/requirejs/require.js') }}"></script>
+{% endblock %}
