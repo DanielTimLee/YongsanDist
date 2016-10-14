@@ -1,5 +1,4 @@
 .idea
 venv
-.env
 app/static/lib/
 *.pyc
