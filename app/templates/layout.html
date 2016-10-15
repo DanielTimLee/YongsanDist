@@ -7,7 +7,7 @@
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='lib/semantic-ui/dist/semantic.min.css') }}"/>
-  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/pages/sidebar.min.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/styles.min.css') }}"/>
 
   {% block style %}
 
@@ -27,9 +27,12 @@
     {% include 'navbar.html' %}
   {% endblock %}
 
+  {% block content %}
+  {% endblock %}
+
   <div class="ui container">
     <div class="content">
-      {% block content %}
+      {% block content_container %}
       {% endblock %}
     </div>
     {% block footer %}
