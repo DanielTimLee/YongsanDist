@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "mappings": "AAII,gDAAkB,CAChB,OAAO,CAAE,IAAI,CAKnB,yCAAiD,CAE7C,gCAAe,CACb,MAAM,CAAE,eAAe,CAEvB,gDAAkB,CAChB,OAAO,CAAE,KAAK,CAGlB,kCAAiB,CACf,OAAO,CAAE,IAAI",
-  "sources": [
-    "../_pages/_sidebar.scss"
-  ],
-  "names": [],
-  "file": "sidebar.min.css"
-}

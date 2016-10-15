@@ -1,0 +1,14 @@
+.index.segment {
+  > .container {
+    height: 55vh;
+    min-height: 800px;
+    align-items: center;
+    display: flex !important;
+    justify-content: center;
+  }
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-image: url('http://localhost:8000/static/images/bg6.jpg');
+}
