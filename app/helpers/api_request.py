@@ -28,56 +28,69 @@ class RequestAPI:
         pass
 
     @classmethod
-    def http_get(cls, endpoint, params=None, use_auth=False):
+    def http_get(cls, endpoint, params=None, use_auth=False, use_version=True):
         response = cls.__make_request(method='GET',
                                       endpoint=endpoint,
                                       params=params,
-                                      use_auth=use_auth)
+                                      use_auth=use_auth,
+                                      use_version=use_version)
         if response is None:
             return None, -1
 
         return response.json(), response.status_code
 
     @classmethod
-    def http_post(cls, endpoint, params=None, payload=None, use_auth=False):
+    def http_post(cls, endpoint, params=None, payload=None, use_auth=False, use_version=True):
         response = cls.__make_request(method='POST',
                                       endpoint=endpoint,
                                       params=params,
                                       payload=payload,
-                                      use_auth=use_auth)
+                                      use_auth=use_auth,
+                                      use_version=use_version)
         if response is None:
             return None, -1
 
         return response.json(), response.status_code
 
     @classmethod
-    def http_put(cls, endpoint, params=None, payload=None, use_auth=False):
+    def http_put(cls, endpoint, params=None, payload=None, use_auth=False, use_version=True):
         response = cls.__make_request(method='PUT',
                                       endpoint=endpoint,
                                       params=params,
                                       payload=payload,
-                                      use_auth=use_auth)
+                                      use_auth=use_auth,
+                                      use_version=use_version)
         if response is None:
             return None, -1
 
         return response.json(), response.status_code
 
     @classmethod
-    def http_delete(cls, endpoint, params=None, use_auth=False):
+    def http_delete(cls, endpoint, params=None, use_auth=False, use_version=True):
         response = cls.__make_request(method='DELETE',
                                       endpoint=endpoint,
                                       params=params,
                                       payload=None,
-                                      use_auth=use_auth)
+                                      use_auth=use_auth,
+                                      use_version=use_version)
         if response is None:
             return None, -1
 
         return response.json(), response.status_code
 
     @classmethod
-    def __make_request(cls, method, endpoint, params=None, payload=None, use_auth=False):
+    def __build_url(cls, endpoint, use_version=True):
 
-        url = "{0}/{1}/{2}".format(cls._api_server_host, cls._api_version, endpoint)
+        if use_version:
+            return "{0}/{1}/{2}".format(cls._api_server_host, cls._api_version, endpoint)
+
+        else:
+            return "{0}/{1}".format(cls._api_server_host, endpoint)
+
+    @classmethod
+    def __make_request(cls, method, endpoint, params=None, payload=None, use_auth=False, use_version=True):
+
+        url = cls.__build_url(endpoint, use_version)
 
         response = None
         try:
@@ -124,7 +137,8 @@ class RequestOauth(RequestAPI):
     def get_token(cls, form_data):
         response_data, status_code = RequestAPI.http_post("{0}".format(cls._oauth_api_endpoint),
                                                           params=form_data,
-                                                          use_auth=False)
+                                                          use_auth=False,
+                                                          use_version=False)
         return response_data
 
 

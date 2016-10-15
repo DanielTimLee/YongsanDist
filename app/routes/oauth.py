@@ -47,7 +47,7 @@ def oauth_login():
     app.logger.info("ACCESS TOKEN: {0}".format(oauth_access_token))
 
     params = parse_qs(urlparse(request.referrer).query)
-    next_url = params['next'][0] if 'next' in params else url_for('root')
+    next_url = params['next'][0] if 'next' in params else url_for('index')
 
     response = make_response(render_template('jump.html', next=next_url))
     response.set_cookie(COOKIE_KEY_ACCESS_TOKEN, oauth_access_token)
