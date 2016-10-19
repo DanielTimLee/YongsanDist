@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block title %}SMTM - 분석 시작하기{% endblock %}
+
+{% set use_main_navbar_left = True %}
+
+{% block content %}
+  <div class="ten wide main-page column">
+
+    <div class="content">
+      <div class="ui big breadcrumb">
+        <a class="section">분석</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section">새 무료 분석</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">시작하기</div>
+      </div>
+      <h2 class="ui left aligned header">
+        <i class="large icons">
+          <i class="mail outline icon"></i>
+        </i>
+        정회원 인증
+        <div class="sub header" style="margin:1em 0em">
+          모든 컨텐츠를 이용을 위해 계정을 인증해 주세요!<br/>
+          인증은 <strong>숭실대 이메일인 @ssu.ac.kr</strong>을 통해 이루어집니다.
+        </div>
+      </h2>
+
+
+    </div>
+
+  </div>
+{% endblock %}

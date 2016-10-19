@@ -8,6 +8,10 @@
         <img src="{{ url_for('static', filename='images/logo.png') }}"/>
       </a>
       <div class="right menu inverted">
+        <a class="ui nav item" href="{{ url_for('index') }}">DEMO</a>
+        <a class="ui nav item" href="{{ url_for('index') }}">BLOG</a>
+        <a class="ui nav item" href="{{ url_for('index') }}">PRICING</a>
+        <a class="ui nav item" href="{{ url_for('index') }}">ABOUT US</a>
         {#      TODO : url 따로 파라미터 넘기지 않고 할 방법?#}
         {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
           <a href="{{ signin }}" class="item"><i class="arrow right icon"></i> 로그인</a>
@@ -26,7 +30,7 @@
               </a>
               <a href="{{ url_for('about') }}" class="item">
                 <i class="help icon"></i>
-                About
+                FAQ
               </a>
               <a href="{{ url_for('signout') }}" class="item">
                 <i class="sign out icon"></i>

@@ -1,8 +1,10 @@
 //@import "helpers/helpers";
 //@import "helpers/mixins";
-//@import "helpers/variable";
+@import "helpers/variable";
 @import "component/layout";
-@import "component/navbar";
+@import "component/index-navbar";
+@import "component/main-navbar";
+@import "component/main-page";
 //@import "component/sidebar";
 //@import "pages/sidebar";
 @import "pages/index";

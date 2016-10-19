@@ -6,7 +6,7 @@ from app.routes.oauth import get_oauth_url
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    return render_template('pages/index.html',
+    return render_template('pages/index/index.html',
                            signin=get_oauth_url())
 
 

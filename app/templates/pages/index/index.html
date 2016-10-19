@@ -2,11 +2,10 @@
 
 {% block title %}환영합니다!{% endblock %}
 
-{% block style %}
-{% endblock %}
-
 {% block content %}
-  <div class="masthead index segment">
+  {% include 'pages/index/index_navbar.html' %}
+
+  <div class="masthead index segment" style="width: 100vw; height: 100vh;">
     <div class="ui container">
       <div class="introduction">
         <a class="ui black version label" href="#">

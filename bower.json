@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "semantic-ui": "^2.2",
-    "jquery": "^2.1"
+    "jquery": "^2.1",
+    "holderjs": "^2.9.4"
   }
 }

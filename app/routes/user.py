@@ -93,7 +93,7 @@ def modify_password():
 @app.route("/signout")
 @login_required
 def signout():
-    response = redirect(url_for('root'))
+    response = redirect(url_for('index'))
     response.set_cookie(COOKIE_KEY_ACCESS_TOKEN, expires=0)
     response.set_cookie(COOKIE_KEY_USER_DATA, expires=0)
 

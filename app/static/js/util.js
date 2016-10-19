@@ -9,3 +9,8 @@ $('.close.icon').click(clear);
 $(document).ready(function () {
   setTimeout(clear, 5000);
 });
+$('.ui.sticky')
+  .sticky({
+    context: '.main-page'
+  })
+;
