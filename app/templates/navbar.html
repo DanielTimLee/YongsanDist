@@ -1,22 +1,24 @@
-<header class="top-navbar">
+<div class="top-navbar">
   <div class="ui container">
-    <div class="ui large secondary top menu inverted">
+    <div class="ui secondary top large menu inverted">
       <a class="hamburger item">
         <i class="sidebar icon"></i>
       </a>
-      <a href="{{ url_for('index') }}" class="logo item">
-        <img src="{{ url_for('static', filename='images/logo.png') }}"/>
+      <a href="{{ url_for('index') }}" class="logo item" style="padding: 0em 0em; margin: 0em 0em;">
+        <img src="holder.js/150x25">
       </a>
-      <div class="right menu inverted">
-        <a class="ui nav item" href="{{ url_for('index') }}">DEMO</a>
-        <a class="ui nav item" href="{{ url_for('index') }}">BLOG</a>
-        <a class="ui nav item" href="{{ url_for('index') }}">PRICING</a>
-        <a class="ui nav item" href="{{ url_for('index') }}">ABOUT US</a>
+      <div class="right nav menu inverted">
+        <a class="ui active hover item" href="{{ url_for('index') }}">DEMO</a>
+        <a class="ui hover item" href="{{ url_for('index') }}">BLOG</a>
+        <a class="ui hover item" href="{{ url_for('index') }}">PRICING</a>
+        <a class="ui hover item" href="{{ url_for('index') }}">ABOUT US</a>
+      </div>
+      <div class="right user menu inverted">
         {#      TODO : url 따로 파라미터 넘기지 않고 할 방법?#}
         {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
-          <a href="{{ signin }}" class="item"><i class="arrow right icon"></i> 로그인</a>
+          <a href="{{ signin }}" class="hover item"><i class="arrow right icon"></i> 로그인</a>
         {% else %}
-          <div class="ui dropdown item">
+          <div class="ui dropdown hover item">
             {{ request.cookies | extract_username_from_userdata }}님
             <i class="dropdown icon"></i>
             <div class="menu">
@@ -38,8 +40,11 @@
               </a>
             </div>
           </div>
+          <div class="ui notification hover item" id="notification-bell">
+            <i class="alarm icon"></i>
+          </div>
         {% endif %}
       </div>
     </div>
   </div>
-</header>
+</div>

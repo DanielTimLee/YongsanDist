@@ -1,0 +1,46 @@
+@import "../helpers/variable";
+
+div.top-navbar {
+  background-color: $skyblue_primary_color;
+  position: fixed;
+  z-index: 900;
+  width: 100%;
+  > .ui.container {
+    > .ui.top.menu {
+      > .hamburger.item {
+        display: none;
+      }
+
+      > .right.user.menu {
+        margin-left: 0em !important;
+        > .notification.item {
+          padding-left: 0em;
+          padding-right: 0em;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $break-large) {
+  div.top-navbar {
+    > .ui.container {
+      margin-left: 0em !important;
+      margin-right: 0em !important;
+
+      > .ui.top.menu {
+        > .hamburger.item {
+          display: block;
+        }
+
+        > .right.user.menu {
+          margin-left: auto !important;
+        }
+
+        > .nav {
+          display: none !important;
+        }
+      }
+    }
+  }
+}

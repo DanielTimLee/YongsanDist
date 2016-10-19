@@ -1,14 +1,32 @@
+a {
+  color: inherit;
+}
+
+//TODO: how to mix 2 sass?
+.ui.layout.container {
+  margin-top: 3em !important;
+}
+
+.full.container {
+  margin-left: 0em !important;
+  margin-right: 0em !important;
+}
+
+.active.item {
+  background: rgba($skyblue_active_color, .60) !important;
+}
+
+.hover.item:hover {
+  background: rgba($skyblue_active_color, .60) !important;
+}
+/*.ui.nav.image {*/
+/*width: 100%;*/
+/*height: auto;*/
+/*}*/
+
 /*.user.error.message {*/
 /*box-shadow: none;*/
 /*background-color: transparent;*/
 /*padding: 0;*/
 /*margin-top: .2em;*/
-/*}*/
-
-a {
-  color: inherit;
-}
-/*.ui.nav.image {*/
-/*width: 100%;*/
-/*height: auto;*/
 /*}*/

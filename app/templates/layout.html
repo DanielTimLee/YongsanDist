@@ -9,10 +9,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='lib/semantic-ui/dist/semantic.min.css') }}"/>
   <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/styles.min.css') }}"/>
 
-  {% block style %}
-
-
-  {% endblock %}
+  {% block style %}{% endblock %}
 </head>
 <body>
 
@@ -23,19 +20,19 @@
 {% endblock %}
 
 <div class="pusher" role="main">
-  <div class="ui doubling centered grid">
+  {% block navbar %}
+    {% include 'navbar.html' %}
+  {% endblock %}
 
-    {% if use_main_navbar_left %}
-      {% include 'pages/component/navbar_left.html' %}
-    {% endif %}
+  <div class="ui layout {% if full_size %}full{% endif %} container">
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
 
-    {% block content %}
+    {% block footer %}
+      {% include 'footer.html' %}
     {% endblock %}
-
-    {% if use_main_navbar_right %}
-      {% include 'pages/component/navbar_right.html' %}
-    {% endif %}
-
   </div>
 </div>
 
