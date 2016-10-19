@@ -2,7 +2,11 @@
   <div class="item">
     <div class="header">SMTM</div>
     <div class="menu">
-      <a class="ui hover item" href="{{ url_for('index') }}">DEMO</a>
+      {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
+        <a class="ui hover item" href="{{ url_for('index') }}">DEMO</a>
+      {% else %}
+        <a class="ui active hover item" href="{{ url_for('index') }}">PROJECTS</a>
+      {% endif %}
       <a class="ui hover item" href="{{ url_for('index') }}">BLOG</a>
       <a class="ui hover item" href="{{ url_for('index') }}">PRICING</a>
       <a class="ui hover item" href="{{ url_for('index') }}">ABOUT US</a>

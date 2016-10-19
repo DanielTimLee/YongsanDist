@@ -5,29 +5,48 @@
 {% set use_main_navbar_left = True %}
 
 {% block content %}
-  <div class="ten wide main-page column">
 
-    <div class="content">
-      <div class="ui big breadcrumb">
-        <a class="section">분석</a>
-        <i class="right chevron icon divider"></i>
-        <a class="section">새 무료 분석</a>
-        <i class="right chevron icon divider"></i>
-        <div class="active section">시작하기</div>
-      </div>
-      <h2 class="ui left aligned header">
-        <i class="large icons">
-          <i class="mail outline icon"></i>
-        </i>
-        정회원 인증
-        <div class="sub header" style="margin:1em 0em">
-          모든 컨텐츠를 이용을 위해 계정을 인증해 주세요!<br/>
-          인증은 <strong>숭실대 이메일인 @ssu.ac.kr</strong>을 통해 이루어집니다.
+  <section class="projects">
+    <div class="page-head">
+      <h2 class="ui header">
+        <i class="folder outline icon"></i>
+        <div class="content">
+          Projects
+          <div class="sub header">
+            새 분석을 위한 프로젝트를 생성해 주세요!<br/>
+          </div>
         </div>
       </h2>
+    </div>
+    <div class="page-body">
+      <h3 class="ui header">
+        새 프로젝트 만들기
+      </h3>
+      <div class="ui container">
+        <h4 class="ui icon bk-green button header">
+          <i class="plus icon"></i>
+          <div class="content">
+            새 프로젝트
+          </div>
+        </h4>
+        <h4 class="ui icon button header">
+          <i class="share alternate icon"></i>
+          <div class="content">
+            가져오기
+          </div>
+        </h4>
+      </div>
 
-
+      <h3 class="ui header">
+        나의 프로젝트
+      </h3>
+      <div class="ui container">
+        <h3 class="ui block header">
+          Block Header
+        </h3>
+      </div>
     </div>
 
-  </div>
+  </section>
+
 {% endblock %}

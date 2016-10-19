@@ -1,0 +1,31 @@
+@import "../helpers/variable";
+
+.page-head {
+  padding: 2em 0em;
+}
+
+.page-body {
+  padding: 1em 0em;
+}
+
+.button.header {
+  width: 120px;
+  height: 120px;
+  padding: 20px !important;
+  margin-top: 0px !important;
+  margin-right: 20px !important;
+  margin-bottom: 0px !important;
+  color: white !important;
+}
+
+.ui.bk-green.button {
+  box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset;
+  background-color: $green_sui_color !important;
+}
+
+.ui.bk-green.button:hover {
+  background-color: $green_sui_hover_color !important;
+}
+
+@media only screen and (max-width: $break-large) {
+}

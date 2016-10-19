@@ -13,11 +13,11 @@ a {
 }
 
 .active.item {
-  background: rgba($skyblue_active_color, .60) !important;
+  background: rgba($skyblue_hover_color, .60) !important;
 }
 
 .hover.item:hover {
-  background: rgba($skyblue_active_color, .60) !important;
+  background: rgba($skyblue_hover_color, .60) !important;
 }
 /*.ui.nav.image {*/
 /*width: 100%;*/
