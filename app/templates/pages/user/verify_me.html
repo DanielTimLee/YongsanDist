@@ -20,7 +20,7 @@
         </div>
       </h2>
 
-      <form action="{{ request.url }}" method="POST" class="ui form" novalidate style="margin:1em 0em">
+      <form action="{{ request.url }}" method="POST" class="ui form" style="margin:1em 0em">
         {{ form.csrf_token }}
         <div class="disabled field{% if form.errors['username'] %} error{% endif %}">
           <label>ID</label>

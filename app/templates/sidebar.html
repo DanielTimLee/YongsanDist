@@ -1,11 +1,11 @@
-<div class="ui left vertical nav sidebar small menu">
+<div class="ui left vertical nav sidebar menu">
   <div class="item">
     <div class="header">SMTM</div>
     <div class="menu">
       {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
         <a class="ui hover item" href="{{ url_for('index') }}">DEMO</a>
       {% else %}
-        <a class="ui active hover item" href="{{ url_for('index') }}">PROJECTS</a>
+        <a class="ui active hover item" href="{{ url_for('project_list') }}">PROJECTS</a>
       {% endif %}
       <a class="ui hover item" href="{{ url_for('index') }}">BLOG</a>
       <a class="ui hover item" href="{{ url_for('index') }}">PRICING</a>
