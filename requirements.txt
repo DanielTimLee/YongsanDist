@@ -1,9 +1,10 @@
 aniso8601==1.1.0
 arrow==0.7.0
+beautifulsoup4==4.5.0
 click==6.6
 decorator==4.0.9
 Flask==0.11.1
-Flask-WTF==0.12
+Flask-WTF==0.13.1
 infinity==1.4
 intervals==0.7.1
 itsdangerous==0.24
@@ -14,8 +15,11 @@ python-dateutil==2.5.3
 pytz==2016.4
 requests==2.10.0
 six==1.10.0
+SQLAlchemy==1.0.14
+SQLAlchemy-Utils==0.32.9
 validators==0.10
 Werkzeug==0.11.10
 WTForms==2.1
 WTForms-Alchemy==0.16.0
 WTForms-Components==0.10.0
+

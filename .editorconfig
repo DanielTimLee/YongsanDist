@@ -14,7 +14,7 @@ indent_style = space
 indent_size = 4
 
 # 2 space indentation
-[*.{js,html,css}]
+[*.{js,html,css,scss}]
 indent_size = 2
 
 # Tab indentation (no size specified)
