@@ -1,4 +1,4 @@
 __all__ = ['index',
            'oauth',
-           'analysis',
+           'project',
            'user']

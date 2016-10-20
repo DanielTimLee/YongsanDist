@@ -216,3 +216,21 @@ class RequestVerifyUserAPI(RequestAPI):
                                                           payload=body,
                                                           use_auth=True)
         return response_data, status_code
+
+
+class RequestProjectAPI(RequestAPI):
+    _project_api_endpoint = 'project'
+
+    @classmethod
+    def get_project_list(cls):
+        response_data, status_code = RequestAPI.http_get("{0}".format(cls._project_api_endpoint),
+                                                         use_auth=True)
+        return response_data
+
+    @classmethod
+    def add_project(cls, body):
+        response_data, status_code = RequestAPI.http_post("{0}".format(cls._project_api_endpoint),
+                                                          payload=body,
+                                                          use_auth=True)
+        return response_data
+        # TODO: Project 1개 가져오는 API

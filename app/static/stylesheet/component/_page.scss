@@ -12,10 +12,17 @@
   width: 120px;
   height: 120px;
   padding: 20px !important;
-  margin-top: 0px !important;
-  margin-right: 20px !important;
-  margin-bottom: 0px !important;
+  margin: 0px 1rem !important;
   color: white !important;
+}
+
+//TODO: Might be conflict with other.
+.block.header {
+  display: block !important;
+}
+
+.right.button-menu {
+  text-align: right;
 }
 
 .ui.bk-green.button {

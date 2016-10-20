@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+
+{% block title %}SMTM - 분석 시작하기{% endblock %}
+
+{% block content %}
+
+  <section class="projects">
+    <div class="page-head">
+      <h2 class="ui header">
+        <i class="folder outline icon"></i>
+        <div class="content">
+          Projects
+          <div class="sub header">
+            새 분석을 위한 프로젝트를 생성해 주세요!<br/>
+          </div>
+        </div>
+      </h2>
+    </div>
+    <div class="page-body">
+      <h3 class="ui header">
+        새 프로젝트 만들기
+      </h3>
+      <div class="ui container">
+        <h4 class="ui icon bk-green add-project button header">
+          <i class="plus icon"></i>
+          <div class="content">
+            새 프로젝트
+          </div>
+        </h4>
+        <h4 class="ui icon button header">
+          <i class="share alternate icon"></i>
+          <div class="content">
+            가져오기
+          </div>
+        </h4>
+      </div>
+
+      <h3 class="ui header">
+        나의 프로젝트
+      </h3>
+      <div class="ui container">
+        {% if projects|length != 0 %}
+          {% for project in projects %}
+            <a class="ui block medium header" href="{{ url_for('project_index',proj_id=project.id) }}">
+              <i class="folder open outline icon"></i>
+              <div class="content">
+                {{ project.title }} - {{ project.status }}
+                <div class="sub header">
+                  {{ project.description }}
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+        {% else %}
+          <h4 class="ui block header">
+            <i class="frown icon"></i>
+            <div class="content">
+              저런! 아직 프로젝트가 없네요!
+              <div class="sub header">
+                새 프로젝트를 생성해 보세요
+              </div>
+            </div>
+          </h4>
+          </div>
+        {% endif %}
+    </div>
+  </section>
+
+  <section class="modal">
+    <div class="ui small add-project modal">
+      <i class="close icon"></i>
+      <div class="header">
+        새 프로젝트 만들기
+      </div>
+      <div class="content">
+        <form action="{{ request.url }}" method="POST" class="ui error form" style="margin:1em 0em">
+          {{ form.csrf_token }}
+          <div class="field{% if form.errors['title'] %} error{% endif %}">
+            <label>프로젝트 이름</label>
+            {{ form.title(placeholder="프로젝트 이름을 입력해주세요") }}
+            {% if form.errors['title'] %}
+              <div class="ui title error message">
+                {% for error in form.errors['title'] %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="field{% if form.errors['description'] %} error{% endif %}">
+            <label>프로젝트 세부사항</label>
+            {{ form.description(placeholder="프로젝트 설명을 입력해주세요") }}
+            {% if form.errors['description'] %}
+              <div class="ui description error message">
+                {% for error in form.errors['description'] %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ui hidden divider"></div>
+          <div class="ui right icon button-menu">
+            <button class="ui negative right labeled icon button" type="reset">
+              취소
+              <i class="remove icon"></i>
+            </button>
+            <button class="ui positive right labeled icon button" type="submit">
+              생성하기
+              <i class="checkmark icon"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block script %}
+  <script>
+    $('.add-project.modal').modal('attach events', '.add-project.button');
+  </script>
+{% endblock %}
