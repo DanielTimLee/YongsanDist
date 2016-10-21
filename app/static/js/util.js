@@ -12,6 +12,6 @@ $(document).ready(function () {
 });
 $('.ui.sticky')
   .sticky({
-    context: '.main-page'
+    context: 'body'
   })
 ;

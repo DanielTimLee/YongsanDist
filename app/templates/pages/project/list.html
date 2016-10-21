@@ -17,7 +17,7 @@
       </h2>
     </div>
     <div class="page-body">
-      <h3 class="ui header">
+      <h3 class="ui border header">
         새 프로젝트 만들기
       </h3>
       <div class="ui container">
@@ -35,16 +35,22 @@
         </h4>
       </div>
 
-      <h3 class="ui header">
+      <h3 class="ui border header">
         나의 프로젝트
       </h3>
       <div class="ui container">
         {% if projects|length != 0 %}
           {% for project in projects %}
-            <a class="ui block medium header" href="{{ url_for('project_index',proj_id=project.id) }}">
-              <i class="folder open outline icon"></i>
+            <a class="ui block medium {{ project.status }} status header"
+               href="{{ url_for('project_info',project_id=project.id) }}">
+              <i class="
+            {% if project.status == "waiting" %}ellipsis horizontal
+            {% elif project.status == "working" %}spinner
+            {% elif project.status == "done" %}checkmark green
+            {% elif project.status == "error" %}remove red
+            {% endif %} icon"></i>
               <div class="content">
-                {{ project.title }} - {{ project.status }}
+                {{ project.title }}
                 <div class="sub header">
                   {{ project.description }}
                 </div>
@@ -99,7 +105,7 @@
             {% endif %}
           </div>
           <div class="ui hidden divider"></div>
-          <div class="ui right icon button-menu">
+          <div class="ui right icon modal-button">
             <button class="ui negative right labeled icon button" type="reset">
               취소
               <i class="remove icon"></i>
