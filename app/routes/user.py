@@ -60,7 +60,7 @@ def modify_profile():
                        nickname=form.nickname.data,
                        gender=form.gender.data)
 
-        response_data, response_code = RequestUserAPI.update_user_data(payload)
+        response_data, response_code = RequestUserAPI.mod_user_data(payload)
 
         # TODO: Check if return data is success
 
@@ -79,7 +79,7 @@ def modify_password():
         payload = dict(password=form.password.data,
                        new_password=form.new_password.data)
 
-        response_data, response_code = RequestUserAPI.update_user_data(payload)
+        response_data, response_code = RequestUserAPI.mod_user_data(payload)
 
         # TODO: Check if return data is success
 

@@ -2,6 +2,14 @@ a {
   color: inherit;
 }
 
+.page-head {
+  padding: 2em 0em;
+}
+
+.page-body {
+  padding: 1em 0em;
+}
+
 //TODO: how to mix 2 sass?
 .ui.layout.container {
   margin-top: 3em !important;
@@ -12,7 +20,7 @@ a {
   margin-right: 0em !important;
 }
 
-.active.item {
+.active.hover.item {
   background: rgba($skyblue_hover_color, .60) !important;
 }
 

@@ -1,13 +1,16 @@
 @import "../helpers/variable";
 
-.page-head {
-  padding: 2em 0em;
+//page-head
+.inline.header {
+  display: inline;
 }
 
-.page-body {
-  padding: 1em 0em;
+.right.project.menu {
+  display: inherit;
+  float: right;
 }
 
+///page-body
 .button.header {
   width: 120px;
   height: 120px;
@@ -17,12 +20,8 @@
 }
 
 //TODO: Might be conflict with other.
-.block.header {
+a.block.header {
   display: block !important;
-}
-
-.right.button-menu {
-  text-align: right;
 }
 
 .ui.bk-green.button {

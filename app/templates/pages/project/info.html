@@ -1,0 +1,189 @@
+{% extends 'layout.html' %}
+
+{% block title %}SMTM - 분석 시작하기{% endblock %}
+
+{% block content %}
+
+  <section class="projects">
+    <div class="page-head">
+      <h2 class="ui inline header">
+        <i class="folder open outline icon"></i>
+        <div class="content">
+          {{ project.username | capitalize }} / {{ project.title }}
+          <div class="ui sub header">
+            {{ project.description }}
+          </div>
+        </div>
+      </h2>
+      <div class="ui right text project menu">
+        <div class="ui icon buttons">
+          <button class="ui mod-project button">
+            <i class="write blue icon"></i>
+          </button>
+          <button class="ui del-project button">
+            <i class="remove red icon"></i>
+          </button>
+          <button class="ui share-project button">
+            <i class="share alternate green icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="page-body">
+      <h3 class="ui header">
+        프로젝트 상태
+      </h3>
+      <div class="ui horizontal segments">
+        <div class="ui {{ project.status }} status segment">
+          <div class="ui small header">
+            {#   TODO: 나중에 외부로 빼던가 깔끔하게 정리 필요#}
+            {% if project.status == "waiting" %}
+              <i class="ellipsis horizontal icon"></i>
+              <div class="content">
+                분석 대기중
+              </div>
+            {% elif project.status == "working" %}
+              <i class="spinner icon"></i>
+              <div class="content">
+                분석중입니다...
+              </div>
+            {% elif project.status == "done" %}
+              <i class="checkmark green icon"></i>
+              <div class="content">
+                분석 완료!!
+              </div>
+            {% elif project.status == "error" %}
+              <i class="remove red icon"></i>
+              <div class="content">
+                분석중 문제 발생
+              </div>
+            {% endif %}
+          </div>
+          <div class="status message">
+            {% if project.target_count == 0 %}
+              <i class="warning sign icon"></i> 아직 타겟을 등록하시지 않으셨습니다 !
+            {% else %}
+              <i class="checkmark icon"></i> 등록된 타깃 수 : {{ project.target_count }}
+            {% endif %}
+            <br/>
+            {% if not project.interest_id %}
+              <i class="warning sign icon"></i> 아직 관심사 카테고리를 등록하시지 않으셨습니다!
+            {% else %}
+              <i class="checkmark icon"></i> 등록된 관심사 : {{ project.target_count }}
+            {% endif %}
+          </div>
+          <br/>
+          <div class="info message">
+            <i class="warning icon"></i> 분석을 시작하기 위해서는 타겟과 관심사를 등록하셔야 합니다!
+          </div>
+        </div>
+        <div class="ui segment">
+          <i class="user icon"></i>{{ project.username | capitalize }}<br/>
+          <i class="calendar icon"></i> {{ project.created_date | humanize }}<br/>
+          <div class="ui divider"></div>
+          <i class="hourglass start icon"></i> {{ project.created_date | humanize }} 시작함 <br/>
+          <i class="hourglass end icon"></i> 소요 시간 : {{ project.created_date | humanize }}
+        </div>
+        <div class="ui segment">
+          <div class="ui vertical buttons">
+            <div class="ui button">
+              <i class="list layout icon"></i>
+              타겟 추가하기
+            </div>
+            <div class="ui button">
+              <i class="tags icon"></i>
+              관심사 등록하기
+            </div>
+            <div class="ui button">
+              <i class="icon user"></i>
+              분석 시작하기
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="ui header">
+        나의 프로젝트
+      </h3>
+      <div class="ui container">
+      </div>
+    </div>
+  </section>
+  {#TODO : form에 error 꼭 붙여야 하는지? (유동적으로 붙여도 되는지) #}
+  <section class="modal">
+    <div class="ui small mod-project modal">
+      <i class="close icon"></i>
+      <div class="header">
+        프로젝트 수정
+      </div>
+      <div class="content">
+        <form action="{{ request.url }}" method="POST" class="ui error form" style="margin:1em 0em">
+          {{ form.csrf_token }}
+          <div class="field{% if form.errors['title'] %} error{% endif %}">
+            <label>프로젝트 이름</label>
+            {{ form.title(value=project.title) }}
+            {% if form.errors['title'] %}
+              <div class="ui title error message">
+                {% for error in form.errors['title'] %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="field{% if form.errors['description'] %} error{% endif %}">
+            <label>프로젝트 세부사항</label>
+            {{ form.description(value=project.description) }}
+            {% if form.errors['description'] %}
+              <div class="ui description error message">
+                {% for error in form.errors['description'] %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ui hidden divider"></div>
+          <div class="ui right icon modal-button">
+            <button class="ui negative right labeled icon button" type="reset">
+              취소
+              <i class="remove icon"></i>
+            </button>
+            <button class="ui positive right labeled icon button" type="submit">
+              수정하기
+              <i class="checkmark icon"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="ui small del-project modal">
+      <i class="close icon"></i>
+      <div class="header">
+        프로젝트 삭제
+      </div>
+      <div class="content">
+        <p>진짜로 프로젝트를 삭제할까요?<br/>
+          프로젝트가 삭제된 뒤에는 분석 결과를 확인할 수 없습니다.</p>
+      </div>
+      <div class="actions">
+        <div class="ui negative cancel button">
+          No
+        </div>
+        <a class="ui positive right labeled icon button"
+           href="{{ url_for('project_del',project_id=project.id) }}">
+          Yes
+          <i class="checkmark icon"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block script %}
+  <script>
+    $('.mod-project.modal').modal('attach events', '.mod-project.button');
+    $('.del-project.modal').modal('attach events', '.del-project.button');
+    $('.del-project.modal').modal('hide', '.cancel.button');
+
+  </script>
+{% endblock %}

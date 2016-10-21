@@ -168,14 +168,14 @@ class RequestUserAPI(RequestAPI):
             return response_data, status_code
 
     @classmethod
-    def update_user_data(cls, body):
+    def mod_user_data(cls, body):
         response_data, status_code = RequestAPI.http_put("{0}".format(cls._account_api_endpoint),
                                                          payload=body,
                                                          use_auth=True)
         return response_data, status_code
 
     @classmethod
-    def delete_user_data(cls, body):
+    def del_user_data(cls, body):
         response_data, status_code = RequestAPI.http_delete("{0}".format(cls._account_api_endpoint),
                                                             payload=body,
                                                             use_auth=True)
@@ -233,4 +233,22 @@ class RequestProjectAPI(RequestAPI):
                                                           payload=body,
                                                           use_auth=True)
         return response_data
-        # TODO: Project 1개 가져오는 API
+
+    @classmethod
+    def get_project(cls, project_id):
+        response_data, status_code = RequestAPI.http_get("{0}/{1}".format(cls._project_api_endpoint, project_id),
+                                                         use_auth=True)
+        return response_data
+
+    @classmethod
+    def mod_project(cls, project_id, body):
+        response_data, status_code = RequestAPI.http_put("{0}/{1}".format(cls._project_api_endpoint, project_id),
+                                                         payload=body,
+                                                         use_auth=True)
+        return response_data
+
+    @classmethod
+    def del_project(cls, project_id):
+        response_data, status_code = RequestAPI.http_delete("{0}/{1}".format(cls._project_api_endpoint, project_id),
+                                                            use_auth=True)
+        return response_data
