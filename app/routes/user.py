@@ -3,7 +3,8 @@ from flask import request, redirect, render_template, flash, url_for
 from app import app, COOKIE_KEY_ACCESS_TOKEN, COOKIE_KEY_USER_DATA
 from app.forms.user import ModifyProfileForm, VerifymeForm, ModifyPasswordForm
 from app.helpers.api_request import RequestUserAPI, RequestVerifyUserAPI
-from app.helpers.util import extract_username, Validation
+from app.helpers.util import extract_username, Validation, extract_user_name, extract_user_email, extract_user_nickname, \
+    extract_user_company
 from app.routes.oauth import login_required
 
 
@@ -55,17 +56,22 @@ def verify_me():
 def modify_profile():
     form = ModifyProfileForm(request.form)
     form.username.data = extract_username(request.cookies)
+    form.name.data = extract_user_name(request.cookies)
+    form.nickname.data = extract_user_nickname(request.cookies)
+    form.email.data = extract_user_email(request.cookies)
+    form.company.data = extract_user_company(request.cookies)
+
     if Validation(form):
         payload = dict(name=form.name.data,
                        nickname=form.nickname.data,
-                       gender=form.gender.data)
+                       email=form.email.data,
+                       company=form.company.data)
 
         response_data, response_code = RequestUserAPI.mod_user_data(payload)
 
-        # TODO: Check if return data is success
-
-        flash('회원 정보 수정이 성공적으로 처리되었습니다.')
-        return redirect(url_for('index'))
+        # TODO: 회원정보 수정 후 cookie_bake ??
+        flash(response_data['messages'])
+        return redirect(url_for('modify_profile'))
 
     return render_template('pages/user/modify_profile.html',
                            form=form)
