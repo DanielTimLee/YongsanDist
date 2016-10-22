@@ -1,4 +1,12 @@
 <div class="ui left vertical nav sidebar menu">
+  <div class="back nav item">
+    <div class="ui tiny header">
+      <i class="angle left icon"></i>
+      <div class="content">
+        Back
+      </div>
+    </div>
+  </div>
   <div class="item">
     <div class="header">SMTM</div>
     <div class="menu">
@@ -14,8 +22,49 @@
   </div>
 </div>
 
-<div class="ui right vertical notification sidebar borderless menu">
-  <div class="ui small feed" id="notification-list">
+{% if config['COOKIE_KEY_ACCESS_TOKEN'] in request.cookies %}
+
+  <div class="ui right vertical notification sidebar menu">
+    <div class="back notification item">
+      <div class="ui tiny header">
+        <i class="angle left icon"></i>
+        <div class="content">
+          Back
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="ui mini header">
+        <img class="ui circular image"
+             src="{{ url_for('static',filename='images/user/default-anonymous-thumbnail.png') }}">
+        <div class="content">
+          {{ request.cookies | extract_username_from_userdata | capitalize }}
+          <div class="sub header">
+            @{{ request.cookies | extract_user_company_from_userdata }}
+          </div>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="user-type item">
+          <i class="anchor icon"></i>
+          <span id="user-type-data">
+                {{ request.cookies | extract_user_type_from_userdata }}
+              </span>
+        </div>
+        <div class="date item">
+          <i class="birthday icon"></i>
+          <span id="join-date">
+                {{ request.cookies | extract_user_join_from_userdata | humanize }} 가입함
+              </span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <p>asdf</p>
+    </div>
+    <div class="ui small feed" id="notification-list">
+    </div>
 
   </div>
-</div>
+
+{% endif %}

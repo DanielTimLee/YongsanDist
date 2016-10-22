@@ -1,8 +1,11 @@
 var clear = function () {
   $('.nag').nag('hide');
 };
-$('.ui.nav.sidebar').sidebar('attach events', '.ui.top.menu > .hamburger.item');
-$('.ui.notification.sidebar').sidebar('attach events', '.ui.top.menu > .user.menu > .notification.item');
+$('.ui.nav.sidebar').sidebar('attach events', '.ui.top.menu > .hamburger.item', '.back.nav.item');
+$('.ui.notification.sidebar').sidebar('attach events', '.ui.top.menu > .user.menu > .notification.item', '.back.notification.item');
+
+$('.ui.nav.sidebar').sidebar('attach events', '.back.nav.item');
+$('.ui.notification.sidebar').sidebar('attach events', '.back.notification.item');
 
 $('.dropdown').dropdown();
 $('.nag').nag('show');
