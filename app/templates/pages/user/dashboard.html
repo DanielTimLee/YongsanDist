@@ -2,56 +2,61 @@
 
 {% block title %}대시보드{% endblock %}
 
-{% set use_main_navbar_left = True %}
-
 {% block content %}
 
-  <div class="ui center aligned grid" style="margin: 1em 0;">
-    <h2 class="ui header">
-      <img src="{{ url_for('static', filename='images/avatar/tom.jpg') }}">
-      <div class="content">
-        {{ request.cookies | extract_username_from_userdata }}님 환영합니다
-        <div class="sub header">회원님의 대시보드입니다.</div>
+  <section class="users">
+    <div class="ui one column centered stackable grid">
+      <div class="user-page stackable column">
+        <h2 class="ui header">
+          <img src="{{ url_for('static', filename='images/user/default-anonymous-thumbnail.png') }}">
+          <div class="content">
+            {{ request.cookies | extract_username_from_userdata | capitalize }}님 환영합니다!
+            <div class="sub header">회원님의 대시보드입니다.</div>
+          </div>
+        </h2>
       </div>
-    </h2>
-  </div>
-  <div class="ui stackable divided aligned grid">
-    <div class="centered row">
-      <div class="five wide column">
-        <a href="{{ url_for('verify_me') }}">
-          <h2 class="ui icon header">
-            <i class="settings icon"></i>
-            프로필 수정
-            <div class="content">
-              <div class="sub header">나의 프로필을 수정하세요.</div>
+      <div class="user-page stacked column">
+        <div class="ui three column stackable divided aligned grid">
+          <div class="centered row">
+            <div class="column">
+              <a href="{{ url_for('verify_me') }}">
+                <h2 class="ui icon header">
+                  <i class="settings icon"></i>
+                  프로필 수정
+                  <div class="content">
+                    <div class="sub header">나의 프로필을 수정하세요.</div>
+                  </div>
+                </h2>
+              </a>
             </div>
-          </h2>
-        </a>
-      </div>
-      <div class="five wide column">
-        <a href="{{ url_for('modify_password') }}">
-          <h2 class="ui icon header">
-            <i class="privacy icon"></i>
-            <div class="content">
-              비밀번호 변경
-              <div class="sub header">개인정보를 위해 6개월 주기로 변경해 주세요!</div>
+            <div class="column">
+              <a href="{{ url_for('modify_password') }}">
+                <h2 class="ui icon header">
+                  <i class="privacy icon"></i>
+                  <div class="content">
+                    비밀번호 변경
+                    <div class="sub header">개인정보를 위해 6개월 주기로 변경해 주세요!</div>
+                  </div>
+                </h2>
+              </a>
             </div>
-          </h2>
-        </a>
-      </div>
-      <div class="five wide column">
-        <a href="{{ url_for('signin_history') }}">
-          <h2 class="ui icon header">
-            <i class="history icon"></i>
-            <div class="content">
-              로그인 기록
-              <div class="sub header">최근 로그인 기록을 확인하세요</div>
+            <div class="column">
+              <a href="{{ url_for('signin_history') }}">
+                <h2 class="ui icon header">
+                  <i class="history icon"></i>
+                  <div class="content">
+                    로그인 기록
+                    <div class="sub header">최근 로그인 기록을 확인하세요</div>
+                  </div>
+                </h2>
+              </a>
             </div>
-          </h2>
-        </a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    </div>
+  </section>
 {% endblock %}
 
 {% block script %}
