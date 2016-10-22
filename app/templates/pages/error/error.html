@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{ data.title }} - Error{% endblock %}
+
+{% block content %}
+  <section class="error">
+    <div class="ui three column stackable centered grid">
+      <div class="column"></div>
+      <div class="error-page column">
+        <div class="content">
+
+          <div class="ui yellow message">
+            <h1 class="ui icon header">
+              <i class="warning icon"></i>
+              <div class="content">
+                {{ data.title }}
+                <div class="sub header">{{ data.header }}</div>
+              </div>
+            </h1>
+            <div class="ui hidden divider"></div>
+            <span>{{ data.message | safe }}</span>
+            <div class="ui hidden divider"></div>
+            <a class="fluid ui vertical animated green button" href="{{ url_for('index') }}">
+              <div class="hidden content">
+                <i class="right arrow icon"></i>
+              </div>
+              <div class="visible content">
+                <span>메인 페이지로 돌아가기</span>
+              </div>
+            </a>
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="column"></div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
