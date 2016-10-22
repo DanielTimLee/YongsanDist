@@ -35,6 +35,39 @@ def extract_username_from_userdata(cookies):
     return userdata['username']
 
 
+def extract_user_type(cookies):
+    userdata = extract_userdata(cookies)
+    return userdata['type']
+
+
+@app.add_template_filter
+def extract_user_type_from_userdata(cookies):
+    userdata = extract_userdata(cookies)
+    return userdata['type']
+
+
+def extract_user_company(cookies):
+    userdata = extract_userdata(cookies)
+    return userdata['company']
+
+
+@app.add_template_filter
+def extract_user_company_from_userdata(cookies):
+    userdata = extract_userdata(cookies)
+    return userdata['company']
+
+
+def extract_user_join(cookies):
+    userdata = extract_userdata(cookies)
+    return userdata['join']
+
+
+@app.add_template_filter
+def extract_user_join_from_userdata(cookies):
+    userdata = extract_userdata(cookies)
+    return userdata['join']
+
+
 @app.add_template_filter
 def humanize(time):
     now = arrow.utcnow()
