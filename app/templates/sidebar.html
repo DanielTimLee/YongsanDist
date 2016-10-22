@@ -1,5 +1,5 @@
 <div class="ui left vertical nav sidebar menu">
-  <div class="back nav item">
+  <div class="back item">
     <div class="ui tiny header">
       <i class="angle left icon"></i>
       <div class="content">
@@ -24,8 +24,8 @@
 
 {% if config['COOKIE_KEY_ACCESS_TOKEN'] in request.cookies %}
 
-  <div class="ui right vertical notification sidebar menu">
-    <div class="back notification item">
+  <div class="ui right vertical notification wide sidebar menu">
+    <div class="back item">
       <div class="ui tiny header">
         <i class="angle left icon"></i>
         <div class="content">
@@ -40,6 +40,7 @@
         <div class="content">
           {{ request.cookies | extract_username_from_userdata | capitalize }}
           <div class="sub header">
+            {{ request.cookies | extract_user_nickname_from_userdata | capitalize }}<br/>
             @{{ request.cookies | extract_user_company_from_userdata }}
           </div>
         </div>
@@ -59,9 +60,36 @@
         </div>
       </div>
     </div>
-    <div class="item">
-      <p>asdf</p>
-    </div>
+    {% if request.cookies | extract_user_type_from_userdata == 'unregistered' %}
+      <div class="noti-msg item">
+        <div class="ui negative message">
+          <div class="ui tiny header">
+            <i class="warning sign icon"></i>
+            <div class="content">
+              <div class="sub header">
+                회원님은 아직 이메일 인증을 하시지 않았어요!<br/>
+                가입한 이메일으로 이메일 인증을 해주세요.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    {% if request.cookies | extract_user_type_from_userdata == 'unregistered' %}
+      <div class="noti-msg item">
+        <div class="ui yellow message">
+          <div class="ui tiny header">
+            <i class="info circle icon"></i>
+            <div class="content">
+              <div class="sub header">
+                회원님은 무료 티어 회원입니다.<br/>
+                모든 기능을 이용을 위해 결제를 해주세요!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
     <div class="ui small feed" id="notification-list">
     </div>
 
