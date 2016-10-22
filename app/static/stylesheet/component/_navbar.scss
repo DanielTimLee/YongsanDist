@@ -1,12 +1,12 @@
 @import "../helpers/variable";
-//TODO: dimmer with border-bottom
+
 div.top-navbar {
   background-color: $skyblue_primary_color;
+  box-shadow: 0 3px 100px 20px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid $skyblue_shadow_color;
   position: fixed;
   z-index: 900;
   width: 100%;
-  //border-bottom:1px solid rgba(34,36,38,.15)
-  //box-shadow:box-shadow: 0 1px 3px transparent;
   > .ui.container {
     > .ui.top.menu {
       > .hamburger.item {
