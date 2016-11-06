@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ board | capitalize }}{% endblock %}
+
+{% block content %}
+  <section class="board">
+    <div class="page-head">
+      <h2 class="ui header">
+        <i class="talk outline icon"></i>
+        <div class="content">
+          Blog
+          <div class="sub header">
+            Target Overflow의 새 소식<br/>
+          </div>
+        </div>
+      </h2>
+    </div>
+    <div class="page-body">
+      <div class="ui stackable grid">
+        <div class="twelve wide column">
+          {#TODO: 링크 달아주기#}
+          <div>
+            {% for document in list %}
+              <a class="ui raised fluid link card"
+                 href="{{ url_for('document_view',board_name=document.board_name,document_id=document.id ) }}">
+                <div class="content">
+                  <div class="ui orange ribbon max-sized label">{{ document.board_title }}</div>
+                  <div class="blog-list header">{{ document.title }}</div>
+                  <div class="description">
+                    <p>{{ document.content }}</p>
+                  </div>
+                </div>
+                <div class="extra content">
+                  <div class="ui orange horizontal min-sized label">{{ document.board_title }}</div>
+                  <div class="right floated author">
+                    <img class="ui avatar image"
+                         src="{{ url_for('static', filename='images/user/default-anonymous-thumbnail.png') }}"> {{ document.username }}
+                  </div>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="four wide column">
+          {#TODO: 버튼 수정 + 게시판 분류#}
+          <div class="write-button-wrap">
+            <a href="{{ url_for('document_add',board_name='freeboard') }}" class="ui basic blue fluid button">
+              <i class="write icon"></i> 글쓰기
+            </a>
+          </div>
+          <div class="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}

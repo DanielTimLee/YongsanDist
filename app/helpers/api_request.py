@@ -147,13 +147,6 @@ class RequestUserAPI(RequestAPI):
     _history_api_endpoint = 'history'
 
     @classmethod
-    def new_user_data(cls, body):
-        response_data, status_code = RequestAPI.http_get("{0}".format(cls._account_api_endpoint),
-                                                         payload=body,
-                                                         use_auth=False)
-        return response_data, status_code
-
-    @classmethod
     def get_user_data(cls, access_token=None):
         if access_token is not None:
             url = '{0}/{1}/{2}'.format(RequestAPI._api_server_host, RequestAPI._api_version, cls._account_api_endpoint)
@@ -250,5 +243,57 @@ class RequestProjectAPI(RequestAPI):
     @classmethod
     def del_project(cls, project_id):
         response_data, status_code = RequestAPI.http_delete("{0}/{1}".format(cls._project_api_endpoint, project_id),
+                                                            use_auth=True)
+        return response_data
+
+
+class RequestDocumentAPI(RequestAPI):
+    _document_api_endpoint = 'documents'
+    _board_api_endpoint = 'boards'
+
+    @classmethod
+    def get_list(cls, board_name, max_result=10, offset=0):
+        params = dict(
+            maxResult=max_result,
+            resultOffset=offset
+        )
+
+        response_data, status_code = RequestAPI.http_get("{0}/{1}".format(cls._board_api_endpoint, board_name),
+                                                         params=params,
+                                                         use_auth=False)
+        return response_data
+
+    @classmethod
+    def get_item(cls, document_id):
+        response_data, status_code = RequestAPI.http_get("{0}/{1}".format(cls._document_api_endpoint, document_id),
+                                                         use_auth=False)
+
+        return response_data
+
+    @classmethod
+    def add_item(cls, board_name, title, content):
+        body = dict(
+            title=title,
+            content=content
+        )
+        response_data, status_code = RequestAPI.http_post("{0}/{1}".format(cls._board_api_endpoint, board_name),
+                                                          payload=body,
+                                                          use_auth=True)
+        return response_data
+
+    @classmethod
+    def mod_item(cls, document_id, title, content):
+        body = dict(
+            title=title,
+            content=content
+        )
+        response_data, status_code = RequestAPI.http_put("{0}/{1}".format(cls._document_api_endpoint, document_id),
+                                                         payload=body,
+                                                         use_auth=True)
+        return response_data
+
+    @classmethod
+    def del_item(cls, document_id):
+        response_data, status_code = RequestAPI.http_delete("{0}/{1}".format(cls._document_api_endpoint, document_id),
                                                             use_auth=True)
         return response_data

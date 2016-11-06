@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ board | capitalize }}{% endblock %}
+
+{% block content %}
+  <section class="board">
+    <div class="page-head">
+      <h2 class="ui header">
+        <i class="talk outline icon"></i>
+        <div class="content">
+          Board > {{ board | capitalize }}
+          <div class="sub header">
+            글 수정하기<br/>
+          </div>
+        </div>
+      </h2>
+    </div>
+    <div class="page-body">
+      <div class="ui stackable grid">
+        <div class="sixteen wide column">
+          <div class="ui very padded segment">
+            <form action="{{ request.url }}" method="POST" class="ui form{% if form.errors %} error{% endif %}"
+                  novalidate
+                  style="margin:1em 0em">
+              {{ form.csrf_token }}
+              <div class="ui big fluid input{% if form.errors['username'] %} error{% endif %}">
+                {{ form.title(placeholder="제목을 입력해주세요") }}
+              </div>
+              <div class="ui divider"></div>
+              <div class="field{% if form.errors['content'] %} error{% endif %}">
+                {{ form.content(placeholder="내용을 입력해주세요") }}
+              </div>
+              <div class="ui text menu">
+                <div class="right menu"></div>
+                <button class="ui red button" type="reset">취소하기</button>
+                <button class="ui teal button" type="submit">작성하기</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="four wide column">
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
