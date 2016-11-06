@@ -9,11 +9,11 @@
       </a>
       <div class="right nav menu inverted">
         {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
-        <a class="ui active hover item" href="{{ url_for('index') }}">DEMO</a>
+          <a class="ui hover item" href="{{ url_for('index') }}">DEMO</a>
         {% else %}
-          <a class="ui active hover item" href="{{ url_for('project_list') }}">PROJECTS</a>
+          <a class="ui hover item" href="{{ url_for('project_list') }}">PROJECTS</a>
         {% endif %}
-        <a class="ui hover item" href="{{ url_for('index') }}">BLOG</a>
+        <a class="ui hover item" href="{{ url_for('document_list',board_name='freeboard') }}">BLOG</a>
         <a class="ui hover item" href="{{ url_for('index') }}">PRICING</a>
         <a class="ui hover item" href="{{ url_for('index') }}">ABOUT US</a>
       </div>

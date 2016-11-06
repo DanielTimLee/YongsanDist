@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ board | capitalize }}{% endblock %}
+
+{% block content %}
+  <section class="board">
+    <div class="page-head">
+      <h2 class="ui header">
+        <i class="talk outline icon"></i>
+        <div class="content">
+          Blog > {{ board | capitalize }}
+          <div class="sub header">
+            Target Overflow의 새 소식<br/>
+          </div>
+        </div>
+      </h2>
+    </div>
+    <div class="page-body">
+      <div class="ui stackable grid">
+        <div class="twelve wide column">
+          <div class="ui very padded segment">
+            <h2 class="ui header">
+              {{ document.title }}
+              <div class="sub header">{{ document.user_id }}</div>
+              <div class="sub header">{{ document.created_date | humanize }}</div>
+            </h2>
+            <div class="ui divider"></div>
+            {{ document.content | safe }}
+            <div class="ui divider"></div>
+            <div class="ui text menu">
+              <div class="right menu"></div>
+              <a href="#">
+                <button class="ui del-document right floated red button" type="submit">삭제하기</button>
+              </a>
+              <a href="{{ url_for('document_mod',board_name=document.board_name,document_id=document.id) }}">
+                <button class="ui right floated teal button" type="submit">수정하기</button>
+              </a>
+            </div>
+          </div>
+          {% include 'pages/document/comment.html' %}
+        </div>
+        <div class="four wide column">
+          {#TODO: 버튼 수정 + 게시판 분류#}
+          <div class="write-button-wrap">
+            <a href="{{ url_for('document_add',board_name='freeboard') }}" class="ui basic blue fluid button">
+              <i class="write icon"></i> 글쓰기
+            </a>
+          </div>
+          <div class="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modal">
+    <div class="ui small del-document modal">
+      <i class="close icon"></i>
+      <div class="header">
+        게시글 삭제
+      </div>
+      <div class="content">
+        <p>진짜로 게시글을 삭제할까요?<br/>
+          게시글이 삭제된 뒤에는 복구할 수 없습니다.</p>
+      </div>
+      <div class="actions">
+        <div class="ui negative cancel button">
+          No
+        </div>
+        <a class="ui positive right labeled icon button"
+           href="{{ url_for('document_del',board_name=document.board_name,document_id=document.id) }}">
+          Yes
+          <i class="checkmark icon"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+
+{% block script %}
+  <script>
+      $('.del-document.modal').modal('attach events', '.del-document.button');
+  </script>
+{% endblock %}
