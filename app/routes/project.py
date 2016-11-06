@@ -32,7 +32,7 @@ def project_list():
 
 @app.route('/project/<int:project_id>', methods=['GET', 'POST'])
 @login_required
-def project_info(project_id):
+def project_view(project_id):
     mod_form = ModifyProjectForm()
     project = RequestProjectAPI.get_project(project_id)
 
@@ -44,12 +44,12 @@ def project_info(project_id):
         response_data = RequestProjectAPI.mod_project(project_id, payload)
         if response_data['success']:
             flash('성공적으로 프로젝트를 수정했습니다.')
-            return redirect(url_for('project_info', project_id=project_id))
+            return redirect(url_for('project_view', project_id=project_id))
 
     elif mod_form.is_submitted():
         flash('프로젝트 수정에 문제가 발생했습니다.')
 
-    return render_template('pages/project/info.html',
+    return render_template('pages/project/view.html',
                            form=mod_form, project=project)
 
 

@@ -42,7 +42,7 @@
         {% if projects|length != 0 %}
           {% for project in projects %}
             <a class="ui block medium {{ project.status }} status header"
-               href="{{ url_for('project_info',project_id=project.id) }}">
+               href="{{ url_for('project_view',project_id=project.id) }}">
               <i class="
             {% if project.status == "waiting" %}ellipsis horizontal
             {% elif project.status == "working" %}spinner
