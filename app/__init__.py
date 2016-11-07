@@ -10,14 +10,7 @@ COOKIE_KEY_USER_DATA = app.config['COOKIE_KEY_USER_DATA']
 #
 # CsrfProtect(app)
 
-from app.helpers.util import extract_username_from_userdata, \
-    extract_user_name_from_userdata, \
-    extract_user_nickname_from_userdata, \
-    extract_user_gender_from_userdata, \
-    extract_user_email_from_userdata, \
-    extract_user_type_from_userdata, \
-    extract_user_company_from_userdata, \
-    extract_user_join_from_userdata, \
-    humanize
+from app.helpers.util import *
+from app.helpers.jinja import *
 
 from app.routes import *

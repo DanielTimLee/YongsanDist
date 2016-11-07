@@ -13,14 +13,13 @@
         {% else %}
           <a class="ui hover item" href="{{ url_for('project_list') }}">PROJECTS</a>
         {% endif %}
-        <a class="ui hover item" href="{{ url_for('document_list',board_name='freeboard') }}">BLOG</a>
+        <a class="ui hover item" href="{{ url_for('document_recent') }}">BLOG</a>
         <a class="ui hover item" href="{{ url_for('index') }}">PRICING</a>
         <a class="ui hover item" href="{{ url_for('index') }}">ABOUT US</a>
       </div>
       <div class="right user menu inverted">
-        {#      TODO : url 따로 파라미터 넘기지 않고 할 방법?#}
         {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
-          <a href="{{ signin }}" class="hover item"><i class="arrow right icon"></i> 로그인</a>
+          <a href="{{ oauth_req_url }}" class="hover item"><i class="arrow right icon"></i> 로그인</a>
         {% else %}
           <div class="ui dropdown hover item">
             {{ request.cookies | extract_username_from_userdata }}님

@@ -34,6 +34,7 @@ def bad(e):
     return render_template('pages/error/error.html', data=data), 400
 
 
+# TODO: 권한 관련 설정 없음.
 @app.route('/error/permission', methods=['GET'])
 def permission_denied():
     return render_template('error/permission.html',
