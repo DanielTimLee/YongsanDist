@@ -167,13 +167,14 @@ class RequestUserAPI(RequestAPI):
                                                          use_auth=True)
         return response_data, status_code
 
+    # TODO: 아직 사용되는 곳 없음
     @classmethod
-    def del_user_data(cls, body):
+    def del_user_data(cls):
         response_data, status_code = RequestAPI.http_delete("{0}".format(cls._account_api_endpoint),
-                                                            payload=body,
                                                             use_auth=True)
         return response_data, status_code
 
+    # TODO: 아직 사용되는 곳 없음
     @classmethod
     def get_signin_history_data(cls, scope="all", maxResult=10):
 
@@ -247,9 +248,32 @@ class RequestProjectAPI(RequestAPI):
         return response_data
 
 
+class RequestBoardAPI(RequestAPI):
+    _board_api_endpoint = 'board'
+
+    @classmethod
+    def get_board_list(cls):
+        response_data, status_code = RequestAPI.http_get("{0}".format(cls._board_api_endpoint),
+                                                         use_auth=False)
+        return response_data['items']
+
+
 class RequestDocumentAPI(RequestAPI):
     _document_api_endpoint = 'documents'
     _board_api_endpoint = 'boards'
+
+    @classmethod
+    def get_recent(cls, max_result=10, offset=0):
+        params = dict(
+            maxResult=max_result,
+            resultOffset=offset
+        )
+
+        response_data, status_code = RequestAPI.http_get("{0}".format(cls._board_api_endpoint),
+                                                         params=params,
+                                                         use_auth=False)
+        return response_data
+
 
     @classmethod
     def get_list(cls, board_name, max_result=10, offset=0):
