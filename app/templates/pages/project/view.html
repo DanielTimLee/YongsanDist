@@ -36,28 +36,10 @@
       <div class="ui horizontal segments">
         <div class="ui {{ project.status }} status segment">
           <div class="ui small header">
-            {#   TODO: 나중에 외부로 빼던가 깔끔하게 정리 필요#}
-            {% if project.status == "waiting" %}
-              <i class="ellipsis horizontal icon"></i>
-              <div class="content">
-                분석 대기중
-              </div>
-            {% elif project.status == "working" %}
-              <i class="spinner icon"></i>
-              <div class="content">
-                분석중입니다...
-              </div>
-            {% elif project.status == "done" %}
-              <i class="checkmark green icon"></i>
-              <div class="content">
-                분석 완료!!
-              </div>
-            {% elif project.status == "error" %}
-              <i class="remove red icon"></i>
-              <div class="content">
-                분석중 문제 발생
-              </div>
-            {% endif %}
+            <i class="{{ project.status | project_status_style }} icon"></i>
+            <div class="content">
+              {{ project.status | project_status_message }}
+            </div>
           </div>
           <div class="status message">
             {% if project.target_count == 0 %}
@@ -181,9 +163,9 @@
 
 {% block script %}
   <script>
-    $('.mod-project.modal').modal('attach events', '.mod-project.button');
-    $('.del-project.modal').modal('attach events', '.del-project.button');
-    $('.del-project.modal').modal('hide', '.cancel.button');
+      $('.mod-project.modal').modal('attach events', '.mod-project.button');
+      $('.del-project.modal').modal('attach events', '.del-project.button');
+      $('.del-project.modal').modal('hide', '.cancel.button');
 
   </script>
 {% endblock %}

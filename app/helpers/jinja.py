@@ -26,7 +26,36 @@ def inject_board():
         'board_list': board_list
     }
 
-
 @app.add_template_filter
 def board_label_color(board):
     return board_color_map[board]
+
+
+project_status_content = {
+    'waiting': {
+        'style': 'ellipsis horizontal',
+        'message': '분석 대기중'
+    },
+    'working': {
+        'style': 'spinner',
+        'message': '분석중입니다...'
+    },
+    'done': {
+        'style': 'checkmark green',
+        'message': '분석 완료!!'
+    },
+    'error': {
+        'style': 'remove red',
+        'message': '분석중 문제 발생'
+    }
+}
+
+
+@app.add_template_filter
+def project_status_style(status):
+    return project_status_content[status]['style']
+
+
+@app.add_template_filter
+def project_status_message(status):
+    return project_status_content[status]['message']

@@ -43,12 +43,7 @@
           {% for project in projects %}
             <a class="ui block medium {{ project.status }} status header"
                href="{{ url_for('project_view',project_id=project.id) }}">
-              <i class="
-            {% if project.status == "waiting" %}ellipsis horizontal
-            {% elif project.status == "working" %}spinner
-            {% elif project.status == "done" %}checkmark green
-            {% elif project.status == "error" %}remove red
-            {% endif %} icon"></i>
+              <i class="{{ project.status | project_status_style }} icon"></i>
               <div class="content">
                 {{ project.title }}
                 <div class="sub header">
