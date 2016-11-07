@@ -18,21 +18,21 @@
     <div class="page-body">
       <div class="ui stackable grid">
         <div class="sixteen wide column">
-          <div class="ui very padded segment">
+          <div class="ui container">
             <form action="{{ request.url }}" method="POST" class="ui form{% if form.errors %} error{% endif %}"
                   novalidate
                   style="margin:1em 0em">
               {{ form.csrf_token }}
-              <div class="ui big fluid input{% if form.errors['username'] %} error{% endif %}">
-                {{ form.title(placeholder="제목을 입력해주세요") }}
+              <div class="ui transparent big fluid input{% if form.errors['username'] %} error{% endif %}">
+                {{ form.title(placeholder="제목을 입력해주세요", autofocus="true") }}
               </div>
               <div class="ui divider"></div>
               <div class="field{% if form.errors['content'] %} error{% endif %}">
-                {{ form.content(placeholder="내용을 입력해주세요") }}
+                {{ form.content(class="textboxio", **{'style':"height:80vh;"}) }}
               </div>
               <div class="ui text menu">
                 <div class="right menu"></div>
-                <button class="ui red button" type="reset">취소하기</button>
+                <button class="ui red button" type="reset">삭제하기</button>
                 <button class="ui teal button" type="submit">작성하기</button>
               </div>
             </form>
@@ -47,4 +47,6 @@
 
 
 {% block script %}
+  <script src="{{ url_for('static',filename='js/editor/textboxio/textboxio.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/editor.js') }}"></script>
 {% endblock %}
