@@ -40,20 +40,7 @@
           {% endfor %}
         </div>
         <div class="four wide column">
-          {% if board != 'blog' %}
-            <div class="write-button-wrap">
-              <a href="{{ url_for('document_add',board_name=board ) }}" class="ui basic blue fluid button">
-                <i class="write icon"></i> 글쓰기
-              </a>
-            </div>
-          {% endif %}
-          <div class="ui list">
-            {% for board in board_list %}
-              <a class="item" href="{{ url_for('document_list',board_name=board['name']) }}">
-                <div class="ui {{ board['name'] | board_label_color }} fluid label">{{ board['title'] }}</div>
-              </a>
-            {% endfor %}
-          </div>
+          {% include 'pages/document/sidebar.html' %}
         </div>
       </div>
     </div>
