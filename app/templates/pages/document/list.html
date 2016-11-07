@@ -8,7 +8,8 @@
       <h2 class="ui header">
         <i class="talk outline icon"></i>
         <div class="content">
-          Blog
+          <a href="{{ url_for('document_recent') }}">Blog</a> {% if board != 'blog' %}>
+          {{ board | capitalize }}{% endif %}
           <div class="sub header">
             Target Overflow의 새 소식<br/>
           </div>
@@ -18,37 +19,40 @@
     <div class="page-body">
       <div class="ui stackable grid">
         <div class="twelve wide column">
-          {#TODO: 링크 달아주기#}
-          <div>
-            {% for document in list %}
-              <a class="ui raised fluid link card"
-                 href="{{ url_for('document_view',board_name=document.board_name,document_id=document.id ) }}">
-                <div class="content">
-                  <div class="ui orange ribbon max-sized label">{{ document.board_title }}</div>
-                  <div class="blog-list header">{{ document.title }}</div>
-                  <div class="description">
-                    <p>{{ document.content }}</p>
-                  </div>
+          {% for document in list %}
+            <a class="ui raised fluid link card"
+               href="{{ url_for('document_view',board_name=document.board_name,document_id=document.id ) }}">
+              <div class="content">
+                <div class="ui {{ document.board_name | board_label_color }} ribbon max-sized label">{{ document.board_title }}</div>
+                <div class="blog-list header">{{ document.title }}</div>
+                <div class="description">
+                  <p>{{ document.content|striptags|title }}</p>
                 </div>
-                <div class="extra content">
-                  <div class="ui orange horizontal min-sized label">{{ document.board_title }}</div>
-                  <div class="right floated author">
-                    <img class="ui avatar image"
-                         src="{{ url_for('static', filename='images/user/default-anonymous-thumbnail.png') }}"> {{ document.username }}
-                  </div>
+              </div>
+              <div class="extra content">
+                <div class="ui {{ document.board_name | board_label_color }} horizontal min-sized label">{{ document.board_title }}</div>
+                <div class="right floated author">
+                  <img class="ui avatar image"
+                       src="{{ url_for('static', filename='images/user/default-anonymous-thumbnail.png') }}"> {{ document.username }}
                 </div>
-              </a>
-            {% endfor %}
-          </div>
+              </div>
+            </a>
+          {% endfor %}
         </div>
         <div class="four wide column">
-          {#TODO: 버튼 수정 + 게시판 분류#}
-          <div class="write-button-wrap">
-            <a href="{{ url_for('document_add',board_name='freeboard') }}" class="ui basic blue fluid button">
-              <i class="write icon"></i> 글쓰기
-            </a>
-          </div>
-          <div class="">
+          {% if board != 'blog' %}
+            <div class="write-button-wrap">
+              <a href="{{ url_for('document_add',board_name=board ) }}" class="ui basic blue fluid button">
+                <i class="write icon"></i> 글쓰기
+              </a>
+            </div>
+          {% endif %}
+          <div class="ui list">
+            {% for board in board_list %}
+              <a class="item" href="{{ url_for('document_list',board_name=board['name']) }}">
+                <div class="ui {{ board['name'] | board_label_color }} fluid label">{{ board['title'] }}</div>
+              </a>
+            {% endfor %}
           </div>
         </div>
       </div>

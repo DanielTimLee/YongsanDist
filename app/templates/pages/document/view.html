@@ -21,7 +21,10 @@
           <div class="ui very padded segment">
             <h2 class="ui header">
               {{ document.title }}
-              <div class="sub header">{{ document.user_id }}</div>
+              <div class="sub header">
+                <img class="ui avatar image"
+                     src="{{ url_for('static', filename='images/user/default-anonymous-thumbnail.png') }}"> {{ document.username }}
+              </div>
               <div class="sub header">{{ document.created_date | humanize }}</div>
             </h2>
             <div class="ui divider"></div>
@@ -40,13 +43,19 @@
           {% include 'pages/document/comment.html' %}
         </div>
         <div class="four wide column">
-          {#TODO: 버튼 수정 + 게시판 분류#}
-          <div class="write-button-wrap">
-            <a href="{{ url_for('document_add',board_name='freeboard') }}" class="ui basic blue fluid button">
-              <i class="write icon"></i> 글쓰기
-            </a>
-          </div>
-          <div class="">
+          {% if board != 'blog' %}
+            <div class="write-button-wrap">
+              <a href="{{ url_for('document_add',board_name=board ) }}" class="ui basic blue fluid button">
+                <i class="write icon"></i> 글쓰기
+              </a>
+            </div>
+          {% endif %}
+          <div class="ui list">
+            {% for board in board_list %}
+              <a class="item" href="{{ url_for('document_list',board_name=board['name']) }}">
+                <div class="ui {{ board['name'] | board_label_color }} fluid label">{{ board['title'] }}</div>
+              </a>
+            {% endfor %}
           </div>
         </div>
       </div>
