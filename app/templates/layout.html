@@ -31,9 +31,11 @@
       {% endblock %}
     </div>
 
-    {% block footer %}
-      {% include 'footer.html' %}
-    {% endblock %}
+    {% if not full_size %}
+      {% block footer %}
+        {% include 'footer.html' %}
+      {% endblock %}
+    {% endif %}
   </div>
 </div>
 
