@@ -10,13 +10,16 @@
   float: right;
 }
 
-///page-body
+//page-body
 .button.header {
   width: 120px;
   height: 120px;
   padding: 20px !important;
   margin: 0px 1rem !important;
   color: white !important;
+  &.right {
+    float: right !important;
+  }
 }
 
 //TODO: Might be conflict with other.Change to link items
@@ -27,10 +30,30 @@ a.block.header {
 .ui.bk-green.button {
   box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset;
   background-color: $green_sui_color !important;
+  &:hover {
+    background-color: $green_sui_hover_color !important;
+  }
 }
 
-.ui.bk-green.button:hover {
-  background-color: $green_sui_hover_color !important;
+.ui.bk-yellow.button {
+  box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset;
+  background-color: $yellow_sui_color !important;
+  &:hover {
+    background-color: $yellow_sui_hover_color !important;
+  }
+}
+
+.ui.bk-blue.button {
+  box-shadow: 0 0 0 0 rgba(34, 36, 38, .15) inset;
+  background-color: $blue_sui_color !important;
+  &:hover {
+    background-color: $blue_sui_hover_color !important;
+  }
+}
+
+//Border Lines
+.left-border {
+  border-left: 1px solid rgba(34, 36, 38, .15) !important;
 }
 
 @media only screen and (max-width: $break-large) {

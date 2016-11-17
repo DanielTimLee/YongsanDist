@@ -11,5 +11,6 @@ COOKIE_KEY_USER_DATA = 'ud'
 
 # flask
 SECRET_KEY = os.environ['SECRET_KEY']
+UPLOAD_FOLDER = 'upload'
 
 TEMPLATES_AUTO_RELOAD = True

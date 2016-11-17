@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField
 from wtforms import StringField
 from wtforms.validators import Length, required, DataRequired
 
@@ -22,6 +23,12 @@ class ModifyProjectForm(FlaskForm):
     description = StringField('Description', [
         required(message='프로젝트 설명은 필수 항목입니다.'),
         Length(min=4, max=255, message='%(min)d 이상 %(max)d 이하로 입력해주세요.')
+    ])
+
+
+class TargetUploadForm(FlaskForm):
+    file = FileField('Target_csv', [
+        required(message='CSV 파일을 업로드 해 주세요.')
     ])
 
 

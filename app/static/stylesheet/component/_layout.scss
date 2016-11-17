@@ -20,13 +20,15 @@ a {
   margin-right: 0em !important;
 }
 
-.active.hover.item {
-  background: rgba($skyblue_hover_color, .60) !important;
+.hover.item {
+  &:hover {
+    background: rgba($skyblue_hover_color, .60) !important;
+  }
+  &.active {
+    background: rgba($skyblue_hover_color, .60) !important;
+  }
 }
 
-.hover.item:hover {
-  background: rgba($skyblue_hover_color, .60) !important;
-}
 /*.ui.nav.image {*/
 /*width: 100%;*/
 /*height: auto;*/

@@ -1,10 +1,16 @@
-from flask import render_template, flash, redirect, url_for
+import os
+
+from flask import render_template, flash, redirect, url_for, request
+from werkzeug.utils import secure_filename
 
 from app import app
-from app.forms.project import AddProjectForm, ModifyProjectForm
-from app.helpers.api_request import RequestProjectAPI
+from app.forms.project import AddProjectForm, ModifyProjectForm, TargetUploadForm
+from app.helpers.api_request import RequestProjectAPI, RequestTargetAPI
+from app.helpers.target_process import csv_reader
 from app.routes.oauth import login_required
 
+# TODO: 나중에 tsv 파일도 import 가능하게.
+ALLOWED_EXTENSIONS = set(['csv'])
 
 @app.route('/project', methods=['GET', 'POST'])
 @login_required
@@ -51,6 +57,47 @@ def project_view(project_id):
 
     return render_template('pages/project/view.html',
                            form=mod_form, project=project)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+@app.route('/project/<int:project_id>/target', methods=['GET', 'POST'])
+@login_required
+def target_index(project_id):
+    try:
+        dir = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
+        target_filename = '/' + str(project_id) + '.csv'
+        target_file = csv_reader(dir + target_filename)
+
+    except Exception:
+        target_file = None
+
+    done = request.args.get('done')
+    if done == str(1):
+        response_data = RequestTargetAPI.post_project_target(project_id, target_file.csv_dict)
+        flash(response_data['messages'][0])
+        return redirect(url_for('project_view', project_id=project_id))
+
+    form = TargetUploadForm()
+    if form.validate_on_submit():
+        filename = secure_filename(form.file.data.filename)
+        if filename and allowed_file(filename):
+            dir = os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER'])
+            if not os.path.exists(dir):
+                os.makedirs(dir)
+
+            new_filename = '/' + str(project_id) + '.csv'
+            form.file.data.save(dir + new_filename)
+            flash('파일 업로드에 성공했습니다.')
+            return redirect(url_for('target_index', project_id=project_id))
+
+    return render_template('pages/project/target/index.html',
+                           targets=target_file,
+                           project_id=project_id,
+                           form=form)
 
 
 # TODO: 세션 체커의 개념을 이용해서 한번 더 처리해주기
