@@ -1,8 +1,7 @@
 from fabric.api import *
 
-env.hosts = ['45.76.111.17']
-env.user = 'root'
-env.password = '%9yQ$@9@sR!V(_VT'
+# add SSH Config at Local Host File
+env.use_ssh_config = True
 env.activate = 'source venv/bin/activate && source .env'
 
 
