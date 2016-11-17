@@ -59,27 +59,46 @@
             <i class="warning icon"></i> 분석을 시작하기 위해서는 타겟과 관심사를 등록하셔야 합니다!
           </div>
         </div>
-        <div class="ui segment">
-          <i class="user icon"></i>{{ project.username | capitalize }}<br/>
-          <i class="calendar icon"></i> {{ project.created_date | humanize }}<br/>
-          <div class="ui divider"></div>
-          <i class="hourglass start icon"></i> {{ project.created_date | humanize }} 시작함 <br/>
-          <i class="hourglass end icon"></i> 소요 시간 : {{ project.created_date | humanize }}
-        </div>
-        <div class="ui segment">
-          <div class="ui vertical buttons">
-            <div class="ui button">
-              <i class="list layout icon"></i>
-              타겟 추가하기
+        <div class="ui horizontal segments">
+          <div class="ui left-border segment">
+            <div class="ui list">
+              <div class="item">
+                <div class="ui label">
+                  <i class="user icon"></i> {{ project.username | capitalize }}
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui label">
+                  <i class="calendar icon"></i> {{ project.created_date | humanize }}
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui label">
+                  <i class="hourglass start icon"></i> {{ project.created_date | humanize }} 시작함
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui label">
+                  <i class="hourglass end icon"></i> 소요 시간 : {{ project.created_date | humanize }}
+                </div>
+              </div>
             </div>
-            <div class="ui button">
-              <i class="tags icon"></i>
-              관심사 등록하기
-            </div>
-            <div class="ui button">
-              <i class="icon user"></i>
-              분석 시작하기
-            </div>
+          </div>
+          <div class="ui segment">
+            <a href="{{ url_for('target_index',project_id=project.id ) }}">
+              <h4 class="ui icon bk-yellow button header">
+                <i class="plus icon"></i>
+                <div class="content">
+                  타깃 추가
+                </div>
+              </h4>
+            </a>
+            <h4 class="ui icon bk-green button header">
+              <i class="play icon"></i>
+              <div class="content">
+                분석 시작
+              </div>
+            </h4>
           </div>
         </div>
       </div>
@@ -166,6 +185,5 @@
       $('.mod-project.modal').modal('attach events', '.mod-project.button');
       $('.del-project.modal').modal('attach events', '.del-project.button');
       $('.del-project.modal').modal('hide', '.cancel.button');
-
   </script>
 {% endblock %}

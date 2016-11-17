@@ -1,0 +1,154 @@
+{% extends 'layout.html' %}
+
+{% block title %}SMTM - 타겟 업로드{% endblock %}
+
+{% block content %}
+
+  <section class="targets">
+    <div class="page-head">
+      <h2 class="ui header">
+        <i class="folder outline icon"></i>
+        <div class="content">
+          Targets
+          <div class="sub header">
+            새 분석을 위한 타깃을 업로드 해 주세요!<br/>
+          </div>
+        </div>
+      </h2>
+    </div>
+    <div class="page-body">
+      <h3 class="ui border header">
+        새 타겟 업로드
+      </h3>
+      <div class="ui container">
+        <h4 class="ui icon bk-green add-target button header">
+          <i class="plus icon"></i>
+          <div class="content">
+            CSV 업로드
+          </div>
+        </h4>
+        <h4 class="ui icon button header">
+          <i class="share alternate icon"></i>
+          <div class="content" data-tooltip="아직 준비중인 기능입니다." data-position="bottom left">
+            가져오기
+          </div>
+        </h4>
+
+
+        <a href="{{ request.url + '?done=1' }}">
+          <h4 class="ui icon bk-blue right{% if targets == None %} disabled{% endif %} button header">
+            <i class="check icon"></i>
+            <div class="content">
+              수정 완료
+            </div>
+          </h4>
+        </a>
+      </div>
+
+      <h3 class="ui border header">
+        나의 타겟
+      </h3>
+      <div class="ui container">
+        {% if targets != None %}
+          <table class="ui selectable celled fixed single line table">
+            <thead>
+            <tr>
+              {% for header in targets.header %}
+                <th>{{ header }}</th>
+              {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for body_list in targets.body %}
+              <tr>
+                {% for body in body_list %}
+                  <td>{{ body }}</td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <h4 class="ui block header">
+            <i class="frown icon"></i>
+            <div class="content">
+              저런! 아직 업로드된 타겟이 없네요!
+              <div class="sub header">
+                새 타겟을 업로드 해 보세요
+              </div>
+            </div>
+          </h4>
+          </div>
+        {% endif %}
+    </div>
+  </section>
+
+  <section class="modal">
+    <div class="ui small add-target modal">
+      <i class="close icon"></i>
+      <div class="header">
+        새 타겟 업로드 하기
+      </div>
+      <div class="content">
+        {% if targets == None %}
+          <div class="ui info message">
+            <i class="close icon"></i>
+            <div class="header">
+              CSV 파일이 다음과 같은 형식이 맞는지 확인해 주세요!
+            </div>
+            <ul class="list">
+              <li>사용자의 이름, 휴대폰 번호, 이메일 등을 꼭 포함하고 있어야 합니다.</li>
+              <li>위 사항들 중 2개 이상을 포함해야 효과적인 분석결과를 확인할 수 있습니다!</li>
+            </ul>
+          </div>
+        {% elif targets != None %}
+          <div class="ui negative message">
+            <i class="close icon"></i>
+            <div class="header">
+              현재 업로드된 타겟이 이미 있습니다!
+            </div>
+            <p>새로운 타겟을 업로드 하시면 이미 있는 타겟은 사라집니다!
+            </p></div>
+        {% endif %}
+        <form action="{{ request.url }}" method="POST" class="ui error form" enctype="multipart/form-data"
+              style="margin:1em 0em">
+          {{ form.csrf_token }}
+          <div class="field{% if form.errors['file'] %} error{% endif %}">
+
+            <label for="file" class="ui icon">
+              <i class="file icon"></i>
+              {{ form.file.label.text }}</label>
+
+            <div class="ui transparent{% if form.errors['file'] %} error{% endif %} input">
+              {{ form.file }}
+            </div>
+
+            {% if form.errors['file'] %}
+              <div class="ui title error message">
+                {% for error in form.errors['file'] %}
+                  <p>{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="ui right icon modal-button">
+            <button class="ui negative right labeled icon button" type="reset">
+              취소
+              <i class="remove icon"></i>
+            </button>
+            <button class="ui positive right labeled icon button" type="submit">
+              생성하기
+              <i class="checkmark icon"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block script %}
+  <script>
+      $('.add-target.modal').modal('attach events', '.add-target.button');
+  </script>
+{% endblock %}

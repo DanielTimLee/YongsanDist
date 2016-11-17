@@ -248,6 +248,19 @@ class RequestProjectAPI(RequestAPI):
         return response_data
 
 
+class RequestTargetAPI(RequestAPI):
+    _project_api_endpoint = 'project'
+    _target_api_endpoint = 'target'
+
+    @classmethod
+    def post_project_target(cls, project_id, csv_dict):
+        response_data, status_code = RequestAPI.http_post(
+            "{0}/{1}/{2}".format(cls._project_api_endpoint, project_id, cls._target_api_endpoint),
+            payload=csv_dict,
+            use_auth=True)
+        return response_data
+
+
 class RequestBoardAPI(RequestAPI):
     _board_api_endpoint = 'board'
 
