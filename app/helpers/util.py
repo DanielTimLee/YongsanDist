@@ -112,8 +112,17 @@ def extract_user_join_from_userdata(cookies):
     return userdata['join']
 
 
+date_format = 'MM월 DD일'
+
 @app.add_template_filter
 def humanize(time):
     now = arrow.utcnow()
     time = arrow.get(time)
-    return now.humanize(time, locale='ko')
+    diff = now - time
+    if diff.days <= 0:
+        time = time.to('Asia/Seoul')
+        if time.humanize(locale='ko') == '1일 전':
+            return time.format(date_format)
+        return time.humanize(locale='ko')
+    else:
+        return time.format(date_format)
