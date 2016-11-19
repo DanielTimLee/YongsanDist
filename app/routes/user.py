@@ -40,7 +40,7 @@ def verify_me():
                                    message={
                                        'error': {
                                            'title': '잘못된 입력입니다.',
-                                           'contents': response_data['messages']
+                                           'contents': response_data['messages'][0]
                                        }
                                    })
 
@@ -54,12 +54,14 @@ def verify_me():
 @app.route('/me/modify_profile', methods=['GET', 'POST'])
 @login_required
 def modify_profile():
+    # TODO: Overwrite 해서 변경사향 적용 안됨 (너무 특정한 데이터를 선택해 넣음).
     form = ModifyProfileForm(request.form)
-    form.username.data = extract_username(request.cookies)
-    form.name.data = extract_user_name(request.cookies)
-    form.nickname.data = extract_user_nickname(request.cookies)
-    form.email.data = extract_user_email(request.cookies)
-    form.company.data = extract_user_company(request.cookies)
+    if not form.username.data:
+        form.username.data = extract_username(request.cookies)
+        form.name.data = extract_user_name(request.cookies)
+        form.nickname.data = extract_user_nickname(request.cookies)
+        form.email.data = extract_user_email(request.cookies)
+        form.company.data = extract_user_company(request.cookies)
 
     if Validation(form):
         payload = dict(name=form.name.data,
@@ -68,9 +70,11 @@ def modify_profile():
                        company=form.company.data)
 
         response_data, response_code = RequestUserAPI.mod_user_data(payload)
+        flash(response_data['messages'][0])
+        if not response_data['success']:
+            return redirect(url_for('modify_profile'))
 
         # TODO: 회원정보 수정 후 cookie_bake ??
-        flash(response_data['messages'])
         return redirect(url_for('modify_profile'))
 
     return render_template('pages/user/modify_profile.html',
@@ -86,10 +90,10 @@ def modify_password():
                        new_password=form.new_password.data)
 
         response_data, response_code = RequestUserAPI.mod_user_data(payload)
+        flash(response_data['messages'][0])
+        if not response_data['success']:
+            return redirect(url_for('modify_password'))
 
-        # TODO: Check if return data is success
-
-        flash('회원 정보 수정이 성공적으로 처리되었습니다.')
         return redirect(url_for('index'))
 
     return render_template('pages/user/modify_password.html',

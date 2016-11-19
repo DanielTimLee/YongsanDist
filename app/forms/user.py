@@ -42,7 +42,7 @@ class ModifyPasswordForm(ModelForm):
     ])
     new_confirm_password = PasswordField('New Confirm Password', [
         required(message='비밀번호 확인값은 필수 항목입니다.'),
-        EqualTo('password', message='비밀번호와 비밀번호 확인값이 일치하지 않습니다.')
+        EqualTo('new_password', message='비밀번호와 비밀번호 확인값이 일치하지 않습니다.')
     ])
 
 
