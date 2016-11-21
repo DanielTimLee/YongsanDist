@@ -1,3 +1,48 @@
+@import "../helpers/font";
+
+.fw {
+  font-family: 'KoPub Dotum' !important;
+  &.thin {
+    font-weight: 300 !important;
+  }
+  &.normal {
+    font-weight: 500 !important;
+  }
+  &.fat {
+    font-weight: 700 !important;
+  }
+}
+
+.vp-h {
+  &.one-q {
+    height: 25vh !important;
+  }
+  &.half {
+    height: 50vh !important;
+  }
+  &.three-q {
+    height: 75vh !important;
+  }
+}
+
+.vp-w {
+  &.one-q {
+    width: 25vw !important;
+  }
+  &.half {
+    width: 50vw !important;
+  }
+  &.three-q {
+    width: 75vw !important;
+  }
+}
+
+.center-v {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 a {
   color: inherit;
 }
@@ -10,14 +55,14 @@ a {
   padding: 1em 0em;
 }
 
-//TODO: how to mix 2 sass?
-.ui.layout.container {
-  margin-top: 3em !important;
-}
-
-.full.container {
-  margin-left: 0em !important;
-  margin-right: 0em !important;
+.container {
+  &.ui.layout {
+    margin-top: 3em !important;
+  }
+  &.full {
+    margin-left: 0em !important;
+    margin-right: 0em !important;
+  }
 }
 
 .hover.item {

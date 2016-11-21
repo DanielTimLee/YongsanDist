@@ -1,8 +1,10 @@
-.introduction {
+.index {
   overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   padding-top: 8rem;
   text-align: center;
-  background-image: url('http://www.lookalike.co.kr/static/images/bg6.jpg');
+  &.introduction {
+    background-image: url('http://www.lookalike.co.kr/static/images/bg6.jpg');
+  }
 }

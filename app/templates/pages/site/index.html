@@ -5,7 +5,7 @@
 {% set full_size = True %}
 
 {% block content %}
-  <div class="introduction" id="introduction">
+  <div class="index introduction" id="introduction">
     <div class="ui black version label" href="#">
       v 1.0
     </div>
@@ -32,38 +32,393 @@
       <img src="holder.js/800x500">
     </div>
   </div>
-  <div class="introduction" id="introduction2">
-    <a class="ui black version label" href="#">
-      v 1.0
-    </a>
-    <h1 class="ui inverted header">
-      페이스북 키워드에 적용 가능한 키워드를 <br/>
-      고객관여 고객군 데이터 기반으로 뽑아 드립니다
+  <div class="index" id="pricing">
+    <h1 class="ui header">
+      페이스북 타게팅 정복을 원하는 누구나.
     </h1>
-    <h3 class="ui inverted header">
-      심지어 밥 먹고오면 다 끝나 있습니다
+    <h3 class="ui fw thin header">
+      광고를 가끔 집행하나요? 아니면 매일 집행하나요?<br/>
+      고객군이 넓은 비즈니스인가요? 좁은 비즈니스 인가요?<br/><br/>
+      당신이 원하는 그 어떤 시나리오에도 Lookalike의 가격정책은 준비되어 있습니다.
     </h3>
     <div class="ui hidden divider"></div>
 
-    <a href="#" class="ui huge primary button">
-      무료로 시작해보기
-    </a>
-    <h5 class="ui inverted header">
-      결제 정보를 요구하지 않습니다
-    </h5>
-    <h1 class="ui hidden divider"></h1>
-    <div class="ui image" style="width: auto;height: auto;">
-      <img src="holder.js/800x500">
+    <div class="ui vp-w three-q container">
+      <div class="ui four column grid">
+        <div class="column">
+          <div class="ui green padded center-v vp-h one-q segment">
+            <h1 class="ui center aligned fw normal header">
+              Free
+              <div class="sub fw thin header">
+                Lookalike을 시작하는 누구나<br/>
+                1개월은 비용 걱정없이.
+              </div>
+            </h1>
+            <div class="ui hidden divider"></div>
+
+            <a class="fluid ui vertical animated green button" href="{{ oauth_req_url }}">
+              <div class="hidden content">
+                <i class="right arrow icon"></i>
+              </div>
+              <div class="visible content">
+                <span>1개월 무료 시작</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded center-v vp-h one-q segment">
+            <h1 class="ui center aligned fw normal header">
+              Starter
+              <div class="sub fw thin header">
+                페이스북 광고 횟수가 적은<br/>
+                비즈니스에 적합
+              </div>
+            </h1>
+            <div class="ui hidden divider"></div>
+            <div>
+              <div class="ui horizontal statistic">
+                <div class="value">
+                  ₩29,700
+                </div>
+                <div class="label">
+                  /월
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded center-v vp-h one-q segment">
+            <h1 class="ui center aligned fw normal header">
+              Standard
+              <div class="sub fw thin header">
+                초기 이용자 또는<br/>
+                많은 분석이 필요한 전문가
+              </div>
+            </h1>
+            <div class="ui hidden divider"></div>
+            <div>
+
+              <div class="ui horizontal statistic">
+                <div class="value">
+                  ₩49,500
+                </div>
+                <div class="label">
+                  /월
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded center-v vp-h one-q segment">
+            <h1 class="ui center aligned fw normal header">
+              Professional
+              <div class="sub fw thin header">
+                대량의 고객 분석, 타게팅<br/>
+                즉시 집행이 필요한 기업고객
+              </div>
+            </h1>
+            <div class="ui hidden divider"></div>
+            <div>
+
+              <div class="ui horizontal statistic">
+                <div class="value">
+                  ₩99,000
+                </div>
+                <div class="label">
+                  /월
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui hidden divider"></div>
+
+      <div class="ui compact top attached right aligned tiny segment">
+        <h4 class="ui fw fat header">
+          최대 분석 인원 및 추가 비용
+        </h4>
+      </div>
+      <div class="ui four column attached grid">
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              고관여 고객 1500명 제공<br/>
+              추가 제공 없음.
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              고관여 고객 400명 제공<br/>
+              추가 1명당 150원
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              고관여 고객 700명 제공<br/>
+              추가 1명당 130원
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              고관여 고객 1500명 제공<br/>
+              추가 1명당 100원.<br/>
+              <strong>1만명 이상 필요시 문의</strong>
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui compact top attached right aligned tiny segment">
+        <h4 class="ui fw fat header">
+          분석 프로세스 및 관리
+        </h4>
+      </div>
+      <div class="ui four column attached grid">
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              1회 최대 300명 분석 가능<br/>
+              <br/>
+              체계적인 분석 목록 관리<br/>
+              표준 CSV 파일 업로드 지원<br/>
+              분석 완료 알림: SMS, 메일<br/>
+              공개/비공개 결과 공유 생성
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              1회 최대 100명 분석 가능<br/>
+              <br/>
+              체계적인 분석 목록 관리<br/>
+              표준 CSV 파일 업로드 지원<br/>
+              분석 완료 알림: SMS, 메일<br/>
+              공개/비공개 결과 공유 생성
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              1회 최대 200명 분석 가능<br/>
+              <br/>
+              체계적인 분석 목록 관리<br/>
+              표준 CSV 파일 업로드 지원<br/>
+              분석 완료 알림: SMS, 메일<br/>
+              공개/비공개 결과 공유 생성
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              1회 최대 500명 분석 가능<br/>
+              <strong>500명 이상 필요시 문의</strong><br/>
+              체계적인 분석 목록 관리<br/>
+              고객 자체 CSV 규격 지원<br/>
+              원하는 채널로 분석 완료 알림<br/>
+              공개/비공개 결과 공유 생성
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui compact top attached right aligned tiny segment">
+        <h4 class="ui fw fat header">
+          페이스북 광고 타게팅 및 즉시 집행
+        </h4>
+      </div>
+      <div class="ui four column attached grid">
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              직접 타게팅 키워드 입력을 위한<br/>
+              최적화된 정보와 설명서 제공<br/>
+              페이스북 광고 계정 연동으로<br/>
+              즉시 광고 캠페인/타겟 생성<br/>
+              자동 A/B 테스트 생성과 측정
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              직접 타게팅 키워드 입력을 위한<br/>
+              최적화된 정보와 설명서 제공<br/>
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              직접 타게팅 키워드 입력을 위한<br/>
+              최적화된 정보와 설명서 제공<br/>
+              페이스북 광고 계정 연동으로<br/>
+              즉시 광고 캠페인/타겟 생성<br/>
+            </h4>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui basic segment">
+            <h4 class="ui right aligned fw thin header">
+              직접 타게팅 키워드 입력을 위한<br/>
+              최적화된 정보와 설명서 제공<br/>
+              페이스북 광고 계정 연동으로<br/>
+              즉시 광고 캠페인/타겟 생성<br/>
+              자동 A/B 테스트 생성과 측정
+            </h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="index" id="about">
+    <h1 class="ui header">
+      LookAlike 우리가 만들었습니다!
+    </h1>
+    <h3 class="ui fw thin header">
+      미래창조과학부 SW 인재 양성 프로그램인 SW Maestro 과정에 선발된 연수생 세명<br/>
+      글로벌 스타트업에서 Product Manager로 활동 중인 멘토<br/>
+      그리고 프로젝트를 위해 도와주신 수 많은 현업 전문가들에 의해 LookAlike은 탄생했습니다.<br/>
+    </h3>
+    <div class="ui hidden divider"></div>
+    <img class="ui centered medium image" src="{{ url_for('static',filename='images/soma_logo.png') }}">
+    <div class="ui hidden divider"></div>
+
+    <div class="ui vp-w half container">
+      <div class="ui three column grid">
+        <div class="column">
+          <div class="ui attached compact teal segment">
+            <img class="ui centered medium image" data-src="holder.js/75x75">
+            <h1 class="ui center aligned fw thin header">
+              이주진
+              <div class="sub fw thin header">
+                연세대 수학,전전,컴과 3학년<br/>
+                기획, 진행, 디자인, 기계학습
+              </div>
+            </h1>
+          </div>
+          <h3 class="ui bottom attached header">
+            <div class="sub fw thin header">
+              jujin@yonsei.ac.kr
+            </div>
+          </h3>
+        </div>
+        <div class="column">
+          <div class="ui attached compact teal segment">
+            <img class="ui centered medium image" data-src="holder.js/75x75">
+            <h1 class="ui center aligned fw thin header">
+              이호연
+              <div class="sub fw thin header">
+                숭실대 정보통신전자 2학년<br/>
+                서버(풀스택) 개발, 데이터 수집
+              </div>
+            </h1>
+          </div>
+          <h3 class="ui bottom attached header">
+            <div class="sub fw thin header">
+              danieltimlee@gmail.com
+            </div>
+          </h3>
+        </div>
+        <div class="column">
+          <div class="ui attached compact teal segment">
+            <img class="ui centered medium image" data-src="holder.js/75x75">
+            <h1 class="ui center aligned fw thin header">
+              장선혁
+              <div class="sub fw thin header">
+                연세대 수학,전전,컴과 3학년<br/>
+                기획, 진행, 디자인, 기계학습
+              </div>
+            </h1>
+          </div>
+          <h3 class="ui bottom attached header">
+            <div class="sub fw thin header">
+              wkdtjsgur100@gmail.com
+            </div>
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui hidden divider"></div>
+
+    <h1 class="ui fw normal header">
+      도움을 주신 분들
+    </h1>
+    <div class="ui hidden divider"></div>
+
+    <div class="ui vp-w three-q container">
+      <div class="ui four column grid">
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              권혁범
+              <div class="sub fw thin header">
+                Noom Inc.<br/>
+                Growth Hacking
+              </div>
+            </h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              김남혁
+              <div class="sub fw thin header">
+                Ars. Praxia<br/>
+                Natural Language Process
+              </div>
+            </h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              정유진
+              <div class="sub fw thin header">
+                Wanted Lab.<br/>
+                Marketing
+              </div>
+            </h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              나세훈
+              <div class="sub fw thin header">
+                Ars. Praxia<br/>
+                Public Data Collecting
+              </div>
+            </h2>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
 
 {% block script %}
   <script>
-    $('.learn-more').on('click', function () {
-      $('html, body').animate({
-        'scrollTop': $('#introduction2').offset().top
-      }, 1500);
-    });
+      $('.learn-more').on('click', function () {
+          $('html, body').animate({
+              'scrollTop': $('#introduction2').offset().top
+          }, 1500);
+      });
   </script>
 {% endblock %}
