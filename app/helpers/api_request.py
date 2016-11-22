@@ -260,6 +260,27 @@ class RequestTargetAPI(RequestAPI):
             use_auth=True)
         return response_data
 
+#Todo: 분석 시작 버튼에 붙여주기.
+class RequestAnalyzeAPI(RequestAPI):
+    _project_api_endpoint = 'project'
+    _analyze_api_endpoint = 'analyze'
+
+    @classmethod
+    def analyze_init(cls, project_id):
+        response_data, status_code = RequestAPI.http_get("{0}/{1}/{2}".format(cls._project_api_endpoint, project_id, cls._analyze_api_endpoint),
+                                                          use_auth=True)
+        return response_data
+
+
+class RequestNotificationAPI(RequestAPI):
+    _notification_api_endpoint = 'notifications'
+
+    @classmethod
+    def get_notification_list(cls):
+        response_data, status_code = RequestAPI.http_get("{0}".format(cls._notification_api_endpoint),
+                                                          use_auth=True)
+        return response_data
+
 
 class RequestBoardAPI(RequestAPI):
     _board_api_endpoint = 'board'
