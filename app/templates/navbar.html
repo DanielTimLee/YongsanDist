@@ -1,24 +1,44 @@
 <div class="top-navbar">
 
   {% include 'flash.html' %}
-
+  <div class="ui mini top attached wingbar comapct segment">
+    <div class="ui container">
+      <div class="ui text mini menu">
+        <div class="right menu">
+          <div class="item"> |</div>
+          <a class="active item">
+            빠른 문의
+          </a>
+          <div class="item"> |</div>
+          <a class="item">
+            사이트맵
+          </a>
+          <div class="item"> |</div>
+          <a class="item">
+            Language
+          </a>
+          <div class="item"> |</div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="ui container">
-    <div class="ui secondary top large menu inverted">
+    <div class="ui secondary top huge menu inverted">
       <a class="hamburger item">
         <i class="sidebar icon"></i>
       </a>
       <a href="{{ url_for('index') }}" class="logo item" style="padding: 0em 0em; margin: 0em 0em;">
-        <img src="holder.js/150x25">
+        <img src="{{ url_for('static',filename='images/logo_w.png') }}" style="width: 185px;height: 30px;">
       </a>
       <div class="right nav menu inverted">
         {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
-          <a class="ui hover item" href="{{ url_for('index') }}">DEMO</a>
+          <a class="ui hover item" href="{{ url_for('index') }}">HOME</a>
         {% else %}
           <a class="ui hover item" href="{{ url_for('project_list') }}">PROJECTS</a>
         {% endif %}
         <a class="ui hover item" href="{{ url_for('document_recent') }}">BLOG</a>
-        <a class="ui hover item" href="{{ url_for('index') }}">PRICING</a>
-        <a class="ui hover item" href="{{ url_for('index') }}">ABOUT US</a>
+        <a class="ui hover item" href="{{ url_for('pricing') }}">PRICING</a>
+        <a class="ui hover item" href="{{ url_for('about') }}">ABOUT US</a>
       </div>
       <div class="right user menu inverted">
         {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
@@ -47,7 +67,9 @@
             </div>
           </div>
           <div class="ui notification hover item" id="notification-bell">
-            <i class="alarm icon"></i>
+            <div class="ui mini floating blue circular label">{{ unread_count }}</div>
+            <i class="alarm icon">
+            </i>
           </div>
         {% endif %}
       </div>

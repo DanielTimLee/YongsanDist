@@ -1,14 +1,28 @@
 @import "../helpers/variable";
 
 div.top-navbar {
-  background-color: $skyblue_primary_color;
+  background-color: $primary_color;
   box-shadow: 0 3px 100px 20px rgba(0, 0, 0, 0.15);
-  border-bottom: 1px solid $skyblue_shadow_color;
+  border-bottom: 1px solid $primary_shadow_color;
   position: fixed;
   z-index: 900;
   width: 100%;
+  > .wingbar {
+    margin-top: 0em !important;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    > .ui.container {
+      > .ui.text.menu {
+        margin-top: 0em;
+        margin-bottom: 0em;
+      }
+    }
+  }
+
   > .ui.container {
     > .ui.top.menu {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
       > .hamburger.item {
         display: none;
       }
@@ -26,11 +40,13 @@ div.top-navbar {
 
 @media only screen and (max-width: $break-large) {
   div.top-navbar {
+    > .wingbar {
+      display: none !important;
+    }
     > .ui.container {
-      margin-left: 0em !important;
-      margin-right: 0em !important;
-
       > .ui.top.menu {
+        margin-top: 0em !important;
+        margin-bottom: 0em !important;
         > .hamburger.item {
           display: block;
         }

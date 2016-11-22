@@ -1,5 +1,7 @@
+from flask import request
+
 from app import app
-from app.helpers.api_request import RequestBoardAPI
+from app.helpers.api_request import RequestBoardAPI, RequestNotificationAPI
 from app.routes.oauth import get_oauth_url
 
 
@@ -7,6 +9,21 @@ from app.routes.oauth import get_oauth_url
 def inject_oauth():
     return {
         'oauth_req_url': get_oauth_url()
+    }
+
+
+@app.context_processor
+def get_notification():
+    if app.config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies:
+        count = None
+        list = None
+    else:
+        response_data = RequestNotificationAPI.get_notification_list()
+        list = response_data['items']
+        count = len(response_data['items'])
+    return {
+        'unread_count': count,
+        'notification_list': list
     }
 
 

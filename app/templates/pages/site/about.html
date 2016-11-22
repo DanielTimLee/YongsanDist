@@ -1,25 +1,139 @@
 {% extends 'layout.html' %}
 
-{% block title %}About{% endblock %}
+{% block title %}Lookalike About{% endblock %}
 
 {% set full_size = True %}
 
 {% block content %}
-    <div class="six wide column">
-      <div class="column">
-        <img class="ui fluid image" src="{{ url_for('static', filename='images/new/main_banner.png') }}"
-             style="padding: 2em 0"/>
-      </div>
-      <div class="column" style="padding: 2em 0;">
-        <div class="ui container">
-          <div class="ui large header">SMTM CLIENT?</div>
-          <p>SMTM 클라이언트 입니다</p>
+  <div class="index" id="about">
+    <h1 class="ui header">
+      LookAlike 우리가 만들었습니다!
+    </h1>
+    <h3 class="ui fw thin header">
+      미래창조과학부 SW 인재 양성 프로그램인 SW Maestro 과정에 선발된 연수생 세명<br/>
+      글로벌 스타트업에서 Product Manager로 활동 중인 멘토<br/>
+      그리고 프로젝트를 위해 도와주신 수 많은 현업 전문가들에 의해 LookAlike은 탄생했습니다.<br/>
+    </h3>
+    <div class="ui hidden divider"></div>
+    <img class="ui centered medium image" src="{{ url_for('static',filename='images/soma_logo.png') }}">
+    <div class="ui hidden divider"></div>
+
+    <div class="ui vp-w half container">
+      <div class="ui three column grid">
+        <div class="column">
+          <div class="ui attached compact teal segment">
+            <img class="ui centered tiny circular image"
+                 src="{{ url_for('static',filename='images/member/jujin.png') }}">
+            <h1 class="ui center aligned fw thin header">
+              이주진
+              <div class="sub fw thin header">
+                연세대 수학,전전,컴과 3학년<br/>
+                기획, 진행, 디자인, 기계학습
+              </div>
+            </h1>
+          </div>
+          <h3 class="ui bottom attached header">
+            <div class="sub fw thin header">
+              jujin@yonsei.ac.kr
+            </div>
+          </h3>
         </div>
-      </div>
-      <div class="column">
-        <div class="ui container">
-          <div class="ui large header">당신의 마케팅이 어려우십니까?</div>
+        <div class="column">
+          <div class="ui attached compact teal segment">
+            <img class="ui centered tiny circular image"
+                 src="{{ url_for('static',filename='images/member/daniel.png') }}">
+            <h1 class="ui center aligned fw thin header">
+              이호연
+              <div class="sub fw thin header">
+                숭실대 정보통신전자 2학년<br/>
+                서버(풀스택) 개발, 데이터 수집
+              </div>
+            </h1>
+          </div>
+          <h3 class="ui bottom attached header">
+            <div class="sub fw thin header">
+              danieltimlee@gmail.com
+            </div>
+          </h3>
+        </div>
+        <div class="column">
+          <div class="ui attached compact teal segment">
+            <img class="ui centered tiny circular image"
+                 src="{{ url_for('static',filename='images/member/jang.png') }}">
+            <h1 class="ui center aligned fw thin header">
+              장선혁
+              <div class="sub fw thin header">
+                연세대 수학,전전,컴과 3학년<br/>
+                기획, 진행, 디자인, 기계학습
+              </div>
+            </h1>
+          </div>
+          <h3 class="ui bottom attached header">
+            <div class="sub fw thin header">
+              wkdtjsgur100@gmail.com
+            </div>
+          </h3>
         </div>
       </div>
     </div>
+
+    <div class="ui hidden divider"></div>
+
+    <h1 class="ui fw normal header">
+      도움을 주신 분들
+    </h1>
+    <div class="ui hidden divider"></div>
+
+    <div class="ui container">
+      <div class="ui four column grid">
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              권혁범
+              <div class="sub fw thin header">
+                Noom Inc.<br/>
+                Growth Hacking
+              </div>
+            </h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              김남혁
+              <div class="sub fw thin header">
+                Ars. Praxia<br/>
+                Natural Language Process
+              </div>
+            </h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              정유진
+              <div class="sub fw thin header">
+                Wanted Lab.<br/>
+                Marketing
+              </div>
+            </h2>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui green padded segment">
+            <h2 class="ui center aligned fw thin header">
+              나세훈
+              <div class="sub fw thin header">
+                Ars. Praxia<br/>
+                Public Data Collecting
+              </div>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block script %}
 {% endblock %}

@@ -1,5 +1,9 @@
 @import "../helpers/variable";
 
+.projects {
+  min-height: 70vh;
+}
+
 .waiting.status {
   border-left: 1rem solid $yellow_sui_color !important;
 }

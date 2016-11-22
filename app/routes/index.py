@@ -12,6 +12,10 @@ def index():
     return render_template('pages/site/index.html')
 
 
+@app.route("/pricing")
+def pricing():
+    return render_template('pages/site/pricing.html')
+
 @app.route("/about")
 def about():
     return render_template('pages/site/about.html')

@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 
 from app import app
 from app.forms.project import AddProjectForm, ModifyProjectForm, TargetUploadForm
-from app.helpers.api_request import RequestProjectAPI, RequestTargetAPI
+from app.helpers.api_request import RequestProjectAPI, RequestTargetAPI, RequestAnalyzeAPI, RequestResultAPI
 from app.helpers.target_process import csv_reader
 from app.routes.oauth import login_required
 
@@ -39,6 +39,12 @@ def project_list():
 @app.route('/project/<int:project_id>', methods=['GET', 'POST'])
 @login_required
 def project_view(project_id):
+    start = request.args.get('start')
+    if start == str(1):
+        response_data = RequestAnalyzeAPI.analyze_init(project_id)
+        flash(response_data['messages'][0])
+        return redirect(url_for('project_view', project_id=project_id))
+
     mod_form = ModifyProjectForm()
     project = RequestProjectAPI.get_project(project_id)
 
@@ -99,6 +105,16 @@ def target_index(project_id):
                            project_id=project_id,
                            form=form)
 
+
+# @login_required
+@app.route('/project/<int:project_id>/result', methods=['GET', 'POST'])
+def project_result(project_id):
+    result = RequestResultAPI.get_result(project_id)
+    print(result['project'])
+    print(result['keyword'])
+    print(result['demo_list'])
+    print("hi")
+    return "hi"
 
 # TODO: 세션 체커의 개념을 이용해서 한번 더 처리해주기
 @app.route('/project/<int:project_id>/del')

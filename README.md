@@ -1,3 +1,3 @@
 # YongsanDist
-## SMTM Target Overflow Client server
+## SMTM LookAlike Client server
 

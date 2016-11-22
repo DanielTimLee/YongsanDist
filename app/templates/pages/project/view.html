@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 
-{% block title %}SMTM - 분석 시작하기{% endblock %}
+{% block title %}LookAlike - 분석 시작하기{% endblock %}
 
 {% block content %}
 
@@ -45,7 +45,7 @@
             {% if project.target_count == 0 %}
               <i class="warning sign icon"></i> 아직 타겟을 등록하시지 않으셨습니다 !
             {% else %}
-              <i class="checkmark icon"></i> 등록된 타깃 수 : {{ project.target_count }}
+              <i class="checkmark icon"></i> 등록된 타겟 수 : {{ project.target_count }}
             {% endif %}
             <br/>
             {% if not project.interest_id %}
@@ -74,7 +74,7 @@
               </div>
               <div class="item">
                 <div class="ui label">
-                  <i class="hourglass start icon"></i> {{ project.created_date | humanize }} 시작함
+                  <i class="announcement icon"></i> 결과 알림 : {{ project.contact_type }}
                 </div>
               </div>
               <div class="item">
@@ -89,16 +89,19 @@
               <h4 class="ui icon bk-yellow button header">
                 <i class="plus icon"></i>
                 <div class="content">
-                  타깃 추가
+                  타겟 추가
                 </div>
               </h4>
             </a>
-            <h4 class="ui icon bk-green button header">
-              <i class="play icon"></i>
-              <div class="content">
-                분석 시작
-              </div>
-            </h4>
+            <a href="{{ request.url + '?start=1' }}">
+              <h4 class="ui icon bk-green {% if project.target_count == 0 %}disabled{% endif %} button header">
+                <i class="play icon"></i>
+                <div class="content" {% if project.target_count == 0 %}data-tooltip="프로젝트 타겟을 먼저 등록해 주세요!"
+                     data-position="bottom left"{% endif %}>
+                  분석 시작
+                </div>
+              </h4>
+            </a>
           </div>
         </div>
       </div>
@@ -106,7 +109,16 @@
       <h3 class="ui header">
         나의 프로젝트
       </h3>
+      <div class="ui segment">
+        <div class="ui active inverted dimmer">
+          <div class="ui text loader">Loading</div>
+        </div>
+        <p>ㅁㄴㅇㄹㅁㄴㄹㅇㄴ</p>
+        <p>ㅁㄴㅇㄹㅁㄴㄹㅇㄴ</p>
+        <p>ㅁㄴㅇㄹㅁㄴㄹㅇㄴ</p>
+      </div>
       <div class="ui container">
+
       </div>
     </div>
   </section>

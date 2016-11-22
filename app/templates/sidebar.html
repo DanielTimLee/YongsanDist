@@ -11,7 +11,7 @@
     <div class="header">SMTM</div>
     <div class="menu">
       {% if config['COOKIE_KEY_ACCESS_TOKEN'] not in request.cookies %}
-        <a class="ui hover item" href="{{ url_for('index') }}">DEMO</a>
+        <a class="ui hover item" href="{{ url_for('index') }}">HOME</a>
       {% else %}
         <a class="ui active hover item" href="{{ url_for('project_list') }}">PROJECTS</a>
       {% endif %}
@@ -90,9 +90,29 @@
         </div>
       </div>
     {% endif %}
-    <div class="ui small feed" id="notification-list">
-    </div>
+    <div class="item">
+      <div class="ui feed" id="notification-list">
+        {% for noti in notification_list %}
+          <div class="event">
+            <div class="label">
+              <img src="{{ url_for('static',filename='images/user/default-thumbnail.png') }}">
+            </div>
+            <div class="content">
+              <div class="summary">
+                {{ noti.content }}
+                <div class="date">
+                </div>
+              </div>
+              <div class="meta">
+                <i class="talk icon"></i> {{ noti.extra_data }}
+                <i class="calendar icon"></i>{{ noti.created_date | humanize }}
 
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
 {% endif %}

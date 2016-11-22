@@ -57,11 +57,19 @@ a {
 
 .container {
   &.ui.layout {
-    margin-top: 3em !important;
+    margin-top: 6.3em !important;
   }
   &.full {
     margin-left: 0em !important;
     margin-right: 0em !important;
+  }
+}
+
+@media only screen and (max-width: $break-large) {
+  .container {
+    &.ui.layout {
+      margin-top: 5em !important;
+    }
   }
 }
 
