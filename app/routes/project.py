@@ -106,15 +106,18 @@ def target_index(project_id):
                            form=form)
 
 
-# @login_required
 @app.route('/project/<int:project_id>/result', methods=['GET', 'POST'])
+@login_required
 def project_result(project_id):
     result = RequestResultAPI.get_result(project_id)
-    print(result['project'])
-    print(result['keyword'])
-    print(result['demo_list'])
-    print("hi")
-    return "hi"
+    project_info = result['project']
+    keyword_info = result['keyword']
+    demo_info = result['demo']
+
+    return render_template('pages/project/result.html',
+                           demo=demo_info,
+                           keyword=keyword_info,
+                           project=project_info)
 
 # TODO: 세션 체커의 개념을 이용해서 한번 더 처리해주기
 @app.route('/project/<int:project_id>/del')

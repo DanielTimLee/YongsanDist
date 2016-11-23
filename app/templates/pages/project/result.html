@@ -1,0 +1,191 @@
+{% extends 'layout.html' %}
+
+{% block title %}LookAlike - 결과{% endblock %}
+
+{% block content %}
+
+  <section class="projects">
+    <div class="page-head">
+      <h2 class="ui inline header">
+        <i class="folder open outline icon"></i>
+        <div class="content">
+          {{ project.username | capitalize }} / {{ project.title }}
+          <div class="ui sub header">
+            {{ project.description }}
+          </div>
+        </div>
+      </h2>
+      <div class="ui right text project menu">
+        <div class="ui icon buttons">
+          <button class="ui mod-project button">
+            <i class="write blue icon"></i>
+          </button>
+          <button class="ui del-project button">
+            <i class="remove red icon"></i>
+          </button>
+          <button class="ui share-project button">
+            <i class="share alternate green icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="page-body">
+      <h3 class="ui header">
+        1. 프로젝트 결과
+      </h3>
+      <div class="ui horizontal segments">
+        <div class="ui {{ project.status }} status segment">
+          <div class="ui small header">
+            <i class="{{ project.status | project_status_style }} icon"></i>
+            <div class="content">
+              {{ project.status | project_status_message }}
+            </div>
+          </div>
+          <div class="status message">
+            {% if project.target_count == 0 %}
+              <i class="warning sign icon"></i> 아직 타겟을 등록하시지 않으셨습니다 !
+            {% else %}
+              <i class="checkmark icon"></i> 등록된 타겟 수 : {{ project.target_count }}
+            {% endif %}
+            <br/>
+            {% if project.valid_customer == 0 %}
+              <i class="warning sign icon"></i> 분석된 유효 고객수가 너무 적습니다!
+            {% else %}
+              <i class="checkmark icon"></i> 분석된 유효 고객 수: {{ project.valid_customer }}
+            {% endif %}
+          </div>
+          <br/>
+          <div class="info message">
+            {% if project.keyword_num == 0 %}
+              <i class="warning sign icon"></i> 분석된 키워드 수가 너무 적습니다!
+            {% else %}
+              <i class="checkmark icon"></i> 분석된 키워드 수: {{ project.valid_customer }}
+            {% endif %}
+          </div>
+        </div>
+        <div class="ui horizontal segments">
+          <div class="ui left-border segment">
+            <div class="ui list">
+              <div class="item">
+                <div class="ui label">
+                  <i class="user icon"></i> {{ project.username | capitalize }}
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui label">
+                  <i class="calendar icon"></i> {{ project.created_date | humanize }}
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui label">
+                  <i class="announcement icon"></i> 결과 알림 : {{ project.contact_type }}
+                </div>
+              </div>
+              <div class="item">
+                <div class="ui label">
+                  <i class="hourglass end icon"></i> 소요 시간 : {{ project.created_date | humanize }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui segment">
+            <a href="{{ url_for('project_view',project_id=project.id ) + '?start=1' }}">
+              <h4 class="ui icon bk-blue {% if project.target_count == 0 %}disabled{% endif %} button header">
+                <i class="refresh icon"></i>
+                <div class="content" {% if project.target_count == 0 %}data-tooltip="프로젝트 타겟을 먼저 등록해 주세요!"
+                     data-position="bottom left"{% endif %}>
+                  다시 분석
+                </div>
+              </h4>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="ui header">
+        2. 전체 키워드 목록 및 상세 정보
+      </h3>
+
+      <div class="ui container" style="height:30vh;overflow:auto;">
+        <table class="ui selectable table">
+          <thead>
+          <tr>
+            <th>순위</th>
+            <th>키워드</th>
+            <th>LookAlike SCORE</th>
+            <th>분석 대상에서 발견 (%)</th>
+            <th>광고 도달 범위 (만명)</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for i in keyword %}
+            {% if i.lookalike_score !='0' %}
+              <tr>
+                <td>{{ i.ranking }}</td>
+                <td>{{ i.keyword }}</td>
+                <td>
+                  <div class="ui {% if i.lookalike_score !='0' %}blue {% else %}disabled {% endif %}progress"
+                       data-percent="{{ i.lookalike_score }}" style="margin-bottom:0rem">
+                    <div class="bar" style="transition-duration: 300ms; width: {{ i.lookalike_score }}%;">
+                      <div class="progress">{{ i.lookalike_score }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="ui {% if i.found_target !='0' %}teal {% else %}disabled {% endif %}progress"
+                       data-percent="{{ i.found_target }}" style="margin-bottom:0rem">
+                    <div class="bar" style="transition-duration: 300ms; width: {{ i.found_target }}%;">
+                      <div class="progress">{{ i.found_target }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="ui {% if i.advertise_rage !='0' %}yellow {% else %}disabled {% endif %}progress"
+                       data-percent="{{ i.advertise_rage }}" style="margin-bottom:0rem">
+                    <div class="bar" style="transition-duration: 300ms; width: {{ i.advertise_rage }}%;">
+                      <div class="progress">{{ i.advertise_rage }}</div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="ui header">
+        3. 인구 통계학 정보
+      </h3>
+
+      <div class="ui three column grid">
+        {% for i in demo %}
+          <div class="column">
+            <table class="ui fixed single line celled table">
+              <thead class="ui inverted">
+              <tr>
+                <th colspan="2">
+                  {{ i.keyword }}
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              {% set key = i.keyword_data | str_to_obj %}
+              {% for j,k in key.items() %}
+                <tr>
+                  <td>{{ j }}</td>
+                  <td>{{ k }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </section>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

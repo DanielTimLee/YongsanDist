@@ -76,3 +76,8 @@ def project_status_style(status):
 @app.add_template_filter
 def project_status_message(status):
     return project_status_content[status]['message']
+
+
+@app.add_template_filter
+def str_to_obj(str):
+    return eval(str)

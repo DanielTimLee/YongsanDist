@@ -268,7 +268,7 @@ class RequestAnalyzeAPI(RequestAPI):
     @classmethod
     def analyze_init(cls, project_id):
         response_data, status_code = RequestAPI.http_get("{0}/{1}/{2}".format(cls._project_api_endpoint, project_id, cls._analyze_api_endpoint),
-                                                          use_auth=True)
+                                                         use_auth=True)
         return response_data
 
 
@@ -280,7 +280,7 @@ class RequestResultAPI(RequestAPI):
     def get_result(cls, project_id):
         response_data, status_code = RequestAPI.http_get(
             "{0}/{1}/{2}".format(cls._project_api_endpoint, project_id, cls._result_api_endpoint),
-            use_auth=False)
+            use_auth=True)
         return response_data
 
 
@@ -290,7 +290,7 @@ class RequestNotificationAPI(RequestAPI):
     @classmethod
     def get_notification_list(cls):
         response_data, status_code = RequestAPI.http_get("{0}".format(cls._notification_api_endpoint),
-                                                          use_auth=True)
+                                                         use_auth=True)
         return response_data
 
 
