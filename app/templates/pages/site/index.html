@@ -27,7 +27,9 @@
     </h5>
     <h1 class="ui hidden divider"></h1>
     <div class="ui image" style="width: auto;height: auto;">
-      <img src="holder.js/800x500">
+      <div class="ui embed" data-url="https://youtu.be/orHE8sO382M"
+           data-placeholder="{{ url_for('static',filename='images/home_embed.png') }}"
+           style="width:800px;height:500px"></div>
     </div>
   </div>
   <div class="index" id="pricing">
@@ -414,4 +416,7 @@
 {% endblock %}
 
 {% block script %}
+  <script>
+      $('.ui.embed').embed();
+  </script>
 {% endblock %}
