@@ -84,24 +84,40 @@
               </div>
             </div>
           </div>
-          <div class="ui segment">
+          <div class="ui segment"
+               {% if project.target_count != 0 %}data-tooltip="프로젝트 타겟이 이미 등록되었습니다!"
+               {% elif project.status == 'working' %}data-tooltip="프로젝트 분석이 이미 진행 중입니다!"
+               {% endif %}data-position="bottom left">
             <a href="{{ url_for('target_index',project_id=project.id ) }}">
-              <h4 class="ui icon bk-yellow button header">
+              <h4 class="ui icon bk-yellow {% if project.target_count != 0 or project.status == 'working' %}disabled{% endif %} button header">
                 <i class="plus icon"></i>
                 <div class="content">
                   타겟 추가
                 </div>
               </h4>
             </a>
-            <a href="{{ request.url + '?start=1' }}">
-              <h4 class="ui icon bk-green {% if project.target_count == 0 %}disabled{% endif %} button header">
-                <i class="play icon"></i>
-                <div class="content" {% if project.target_count == 0 %}data-tooltip="프로젝트 타겟을 먼저 등록해 주세요!"
-                     data-position="bottom left"{% endif %}>
-                  분석 시작
-                </div>
-              </h4>
-            </a>
+            {% if project.status != 'done' %}
+              <a href="{{ request.url + '?start=1' }}"
+                 {% if project.target_count == 0 %}data-tooltip="프로젝트 타겟을 먼저 등록해 주세요!"
+                 {% elif project.status == 'working' %}data-tooltip="프로젝트 분석이 이미 진행 중입니다!"
+                 {% endif %}data-position="bottom left">
+                <h4 class="ui icon bk-blue {% if project.target_count == 0 or project.status == 'working' %}disabled{% endif %} button header">
+                  <i class="play icon"></i>
+                  <div class="content">
+                    분석 시작
+                  </div>
+                </h4>
+              </a>
+            {% else %}
+              <a href="{{ url_for('project_result',project_id=project.id) }}">
+                <h4 class="ui icon bk-green button header">
+                  <i class="check icon"></i>
+                  <div class="content">
+                    결과 확인
+                  </div>
+                </h4>
+              </a>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -111,11 +127,11 @@
       </h3>
       <div class="ui segment">
         <div class="ui active inverted dimmer">
-          <div class="ui text loader">Loading</div>
+          <div class="ui text loader">로딩 중!</div>
         </div>
-        <p>ㅁㄴㅇㄹㅁㄴㄹㅇㄴ</p>
-        <p>ㅁㄴㅇㄹㅁㄴㄹㅇㄴ</p>
-        <p>ㅁㄴㅇㄹㅁㄴㄹㅇㄴ</p>
+        <p>Crawler Server Status : Healthy!</p>
+        <p>Target All Crawled!</p>
+        <p>Getting Results!</p>
       </div>
       <div class="ui container">
 
