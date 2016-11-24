@@ -18,6 +18,7 @@ def install():
 
 def deploy():
     with cd('~/YongsanDist/'):
+        run('git stash')
         run('git checkout master')
         run('git pull origin master')
         with prefix(env.activate):
