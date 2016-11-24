@@ -84,11 +84,11 @@
               </div>
             </div>
           </div>
-          <div class="ui segment"
+          <div class="ui segment">
+            <a href="{{ url_for('target_index',project_id=project.id ) }}"
                {% if project.target_count != 0 %}data-tooltip="프로젝트 타겟이 이미 등록되었습니다!"
                {% elif project.status == 'working' %}data-tooltip="프로젝트 분석이 이미 진행 중입니다!"
                {% endif %}data-position="bottom left">
-            <a href="{{ url_for('target_index',project_id=project.id ) }}">
               <h4 class="ui icon bk-yellow {% if project.target_count != 0 or project.status == 'working' %}disabled{% endif %} button header">
                 <i class="plus icon"></i>
                 <div class="content">
